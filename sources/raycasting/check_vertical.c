@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_vertical.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:35:19 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/16 18:51:21 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 12:49:23 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 float	check_v(t_game *game, float *vx, float *vy, float angle)
 {

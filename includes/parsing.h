@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 17:21:07 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 12:49:50 by ebouvier         ###   ########.fr       */
+/*   Created: 2023/09/24 14:34:45 by ebouvier          #+#    #+#             */
+/*   Updated: 2023/09/24 14:44:35 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-void	my_mlx_pixel_put(t_img_data *buffer, int x, int y, int color)
+typedef enum e_symbols
 {
-	char	*dst;
+	EMPTY = 0,
+	WALL = 1,
+	PLAYER,
+}	t_symbols;
 
-	dst = buffer->addr + (y * buffer->line_length + x * (buffer->bit_per_pixel
-			/ 8));
-	*(unsigned int *)dst = color;
-}
+#endif

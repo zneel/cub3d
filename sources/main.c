@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/20 12:44:35 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 13:33:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 void	print_mat(char **map)
 {
@@ -23,27 +23,27 @@ void	print_mat(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			ft_printf("%c", map[y][x]);
+			printf("%c", map[y][x]);
 			x++;
 		}
-		ft_printf("\n");
+		printf("\n");
 		y++;
 	}
 }
 
 void	print_array(t_game game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (game.d_map.array[i])
 	{
 		if (i % game.d_map.x_max == 0)
-			ft_printf("\n");
-		ft_printf("%c", game.d_map.array[i]);
+			printf("\n");
+		printf("%c", game.d_map.array[i]);
 		i++;
 	}
-	ft_printf("\n");
+	printf("\n");
 }
 
 void	print_obs(t_game *game, int x_start, int y_start, unsigned int color)
@@ -87,8 +87,8 @@ void	draw_obs(t_game *game)
 
 void	draw_player(t_game *game)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	x = game->player.x;
 	while (x < game->player.x + SIZE_PLAYER)
@@ -111,7 +111,6 @@ void	draw_grid(t_game *game)
 	int	y;
 
 	x = SIZE_CASE;
-	y = 0;
 	while (x < game->d_map.x_max * SIZE_CASE)
 	{
 		y = 0;
@@ -122,7 +121,6 @@ void	draw_grid(t_game *game)
 		}
 		x += SIZE_CASE;
 	}
-	x = 0;
 	y = SIZE_CASE;
 	while (y < game->d_map.y_max * SIZE_CASE)
 	{

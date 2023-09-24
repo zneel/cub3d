@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_ft.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:29:27 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/20 12:41:20 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 12:50:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 int	close_game(t_game *game)
 {

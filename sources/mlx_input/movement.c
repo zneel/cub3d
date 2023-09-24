@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:28:48 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/16 17:33:01 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 12:50:02 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 void	key_w(t_game *game)
 {
@@ -20,7 +20,7 @@ void	key_w(t_game *game)
 
 void	key_a(t_game *game)
 {
-	game->player.angle -=0.1;
+	game->player.angle -= 0.1;
 	if (game->player.angle <= 0)
 		game->player.angle += 2 * PI;
 	game->player.delta_x = cos(game->player.angle) * 5;
@@ -35,7 +35,7 @@ void	key_s(t_game *game)
 
 void	key_d(t_game *game)
 {
-	game->player.angle +=0.1;
+	game->player.angle += 0.1;
 	if (game->player.angle >= 2 * PI)
 		game->player.angle -= 2 * PI;
 	game->player.delta_x = cos(game->player.angle) * 5;

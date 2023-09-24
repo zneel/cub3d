@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/16 18:23:48 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 14:29:11 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 void	init_player(t_game *game)
 {
@@ -27,6 +27,8 @@ void	init_game(t_game *game)
 	game->y_win = 1000;
 	game->fov = 60;
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		exit(1);
 	game->win = mlx_new_window(game->mlx, game->x_win, game->y_win, "cub3D");
 	game->buffer.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
 	game->buffer.addr = mlx_get_data_addr(game->buffer.img,
