@@ -2,6 +2,7 @@ NAME	:= cub3D
 CC 		:= cc
 CFLAGS	:= -Wall -Wextra -Werror -I./includes -MMD
 SRCS	:= sources/main.c \
+		sources/helpers.c \
 		sources/init/init.c \
 		sources/parsing/parsing.c \
 		sources/mlx_utils/pixel_put.c \

@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 14:27:41 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:10:18 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void	new_matrix(char *file, t_map_data *map)
 	lst = NULL;
 	map->y_max = 0;
 	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		print_and_exit("Error\nopen() failed.");
 	str_tmp = get_next_line(fd);
 	while (str_tmp)
 	{
-		ft_lstadd_back(&lst, ft_lstnew(str_tmp));
+		ft_lstadd_back(&lst, ft_lstnew(ft_strdup(str_tmp)));
 		free(str_tmp);
 		str_tmp = get_next_line(fd);
 		map->y_max++;

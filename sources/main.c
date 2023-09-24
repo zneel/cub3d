@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 13:33:05 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:01:14 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (0);
+		print_and_exit("Error\nUsage: ./cub3D <map.cub>");
 	new_matrix(argv[1], &game.d_map);
 	new_array(&game);
 	init_player(&game);

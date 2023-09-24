@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 14:29:11 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:57:43 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_game(t_game *game)
 	game->fov = 60;
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		exit(1);
+		print_and_exit("Error\nmlx_init() failed.");
 	game->win = mlx_new_window(game->mlx, game->x_win, game->y_win, "cub3D");
 	game->buffer.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
 	game->buffer.addr = mlx_get_data_addr(game->buffer.img,
