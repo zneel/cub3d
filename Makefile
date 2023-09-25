@@ -5,6 +5,12 @@ SRCS	:= sources/main.c \
 		sources/helpers.c \
 		sources/init/init.c \
 		sources/parsing/parsing.c \
+		sources/parsing/file.c \
+		sources/parsing/scene.c \
+		sources/parsing/textures.c \
+		sources/parsing/colors.c \
+		sources/parsing/map.c \
+		sources/clear/clear_map.c \
 		sources/mlx_utils/pixel_put.c \
 		sources/mlx_utils/line_put.c \
 		sources/mlx_input/mlx_ft.c \

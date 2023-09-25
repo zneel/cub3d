@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 15:01:14 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:31:41 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	print_array(t_game game)
 	int	i;
 
 	i = 0;
-	while (game.d_map.array[i])
+	while (game.map.array[i])
 	{
-		if (i % game.d_map.x_max == 0)
+		if (i % game.map.x_max == 0)
 			printf("\n");
-		printf("%c", game.d_map.array[i]);
+		printf("%c", game.map.array[i]);
 		i++;
 	}
 	printf("\n");
@@ -70,12 +70,12 @@ void	draw_obs(t_game *game)
 	int	y;
 
 	y = 0;
-	while (game->d_map.map[y])
+	while (game->map.map[y])
 	{
 		x = 0;
-		while (game->d_map.map[y][x])
+		while (game->map.map[y][x])
 		{
-			if (game->d_map.map[y][x] == '1')
+			if (game->map.map[y][x] == '1')
 				print_obs(game, x * SIZE_CASE, y * SIZE_CASE, 0xFFFFFF);
 			else
 				print_obs(game, x * SIZE_CASE, y * SIZE_CASE, 0x000000);
@@ -111,10 +111,10 @@ void	draw_grid(t_game *game)
 	int	y;
 
 	x = SIZE_CASE;
-	while (x < game->d_map.x_max * SIZE_CASE)
+	while (x < game->map.x_max * SIZE_CASE)
 	{
 		y = 0;
-		while (y < game->d_map.y_max * SIZE_CASE)
+		while (y < game->map.y_max * SIZE_CASE)
 		{
 			my_mlx_pixel_put(&game->buffer, x, y, 0x606060);
 			y++;
@@ -122,10 +122,10 @@ void	draw_grid(t_game *game)
 		x += SIZE_CASE;
 	}
 	y = SIZE_CASE;
-	while (y < game->d_map.y_max * SIZE_CASE)
+	while (y < game->map.y_max * SIZE_CASE)
 	{
 		x = 0;
-		while (x < game->d_map.x_max * SIZE_CASE)
+		while (x < game->map.x_max * SIZE_CASE)
 		{
 			my_mlx_pixel_put(&game->buffer, x, y, 0x606060);
 			x++;
@@ -134,21 +134,27 @@ void	draw_grid(t_game *game)
 	}
 }
 
+void	init_cub3d(t_game *game)
+{
+	init_game(game);
+	init_player(game);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
 	if (argc != 2)
-		print_and_exit("Error\nUsage: ./cub3D <map.cub>");
-	new_matrix(argv[1], &game.d_map);
-	new_array(&game);
-	init_player(&game);
-	init_game(&game);
-	print_mat(game.d_map.map);
-	print_array(game);
-	mlx_loop_hook(game.mlx, &loop, &game);
-	mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
-	mlx_hook(game.win, 17, 0, &close_game, &game);
-	mlx_loop(game.mlx);
+		error_and_exit("Usage: ./cub3D <map.cub>");
+	init_map(&game.map);
+	if (!parse_cubfile(argv[1], &game.map))
+		exit(1);
+	destroy_map(&game.map);
+	// print_mat(game.map.map);
+	// print_array(game);
+	// mlx_loop_hook(game.mlx, &loop, &game);
+	// mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
+	// mlx_hook(game.win, 17, 0, &close_game, &game);
+	// mlx_loop(game.mlx);
 	return (0);
 }

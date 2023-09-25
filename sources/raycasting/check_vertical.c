@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:35:19 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 12:49:23 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:02:46 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ float	check_v(t_game *game, float *vx, float *vy, float angle)
 	{
 		mat_x = (int)(ray.x) / SIZE_CASE;
 		mat_y = (int)(ray.y) / SIZE_CASE;
-		mat_p = mat_y * game->d_map.x_max + mat_x;
-		if (mat_p > 0 && mat_p < game->d_map.x_max * game->d_map.y_max
-			&& game->d_map.array[mat_p] == '1')
+		mat_p = mat_y * game->map.x_max + mat_x;
+		if (mat_p > 0 && mat_p < game->map.x_max * game->map.y_max
+			&& game->map.array[mat_p] == '1')
 		{
 			*vx = ray.x;
 			*vy = ray.y;

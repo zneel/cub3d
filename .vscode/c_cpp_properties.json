@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64",
+            "compilerPath": "/usr/bin/clang",
+            "compilerArgs": ["-Llibft","-lft", "-Lmlx_linux", "-lmlx", "-L/usr/lib", "-lXext", "-lX11", "-lm", "-lz"]
+        }
+    ],
+    "version": 4
+}
