@@ -6,45 +6,11 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 21:31:41 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:26:35 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	print_mat(char **map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			printf("%c", map[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-}
-
-void	print_array(t_game game)
-{
-	int	i;
-
-	i = 0;
-	while (game.map.array[i])
-	{
-		if (i % game.map.x_max == 0)
-			printf("\n");
-		printf("%c", game.map.array[i]);
-		i++;
-	}
-	printf("\n");
-}
 
 void	print_obs(t_game *game, int x_start, int y_start, unsigned int color)
 {
@@ -70,12 +36,12 @@ void	draw_obs(t_game *game)
 	int	y;
 
 	y = 0;
-	while (game->map.map[y])
+	while (y < game->map.y_max)
 	{
 		x = 0;
-		while (game->map.map[y][x])
+		while (x < game->map.x_max)
 		{
-			if (game->map.map[y][x] == '1')
+			if (game->map.map[y][x] == WALL)
 				print_obs(game, x * SIZE_CASE, y * SIZE_CASE, 0xFFFFFF);
 			else
 				print_obs(game, x * SIZE_CASE, y * SIZE_CASE, 0x000000);
@@ -149,12 +115,11 @@ int	main(int argc, char **argv)
 	init_map(&game.map);
 	if (!parse_cubfile(argv[1], &game.map))
 		exit(1);
-	destroy_map(&game.map);
-	// print_mat(game.map.map);
-	// print_array(game);
-	// mlx_loop_hook(game.mlx, &loop, &game);
-	// mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
-	// mlx_hook(game.win, 17, 0, &close_game, &game);
-	// mlx_loop(game.mlx);
+	init_game(&game);
+	init_player(&game);
+	mlx_loop_hook(game.mlx, &loop, &game);
+	mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
+	mlx_hook(game.win, 17, 0, &close_game, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }
