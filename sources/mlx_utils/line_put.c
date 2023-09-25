@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   line_put.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:22:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/16 17:23:00 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 12:49:58 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 t_line	create_line(float x1, float y1, float x2, float y2)
 {

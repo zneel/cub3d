@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calc_lenght_ray.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:41:44 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/16 17:42:05 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/24 12:49:44 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3d.h"
 
 float	calc_dist(float player_x, float player_y, float ray_x, float ray_y)
 {

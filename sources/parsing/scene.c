@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 17:21:07 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 12:49:50 by ebouvier         ###   ########.fr       */
+/*   Created: 2023/09/24 14:43:51 by ebouvier          #+#    #+#             */
+/*   Updated: 2023/09/24 14:55:54 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parsing.h"
+#include <fcntl.h>
 
-void	my_mlx_pixel_put(t_img_data *buffer, int x, int y, int color)
+t_bool	check_texture_path(char *path)
 {
-	char	*dst;
+	int	fd;
 
-	dst = buffer->addr + (y * buffer->line_length + x * (buffer->bit_per_pixel
-			/ 8));
-	*(unsigned int *)dst = color;
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (false);
+	close(fd);
+	return (true);
+}
+
+t_bool	is_scene_file_valid(char *scene)
+{
 }

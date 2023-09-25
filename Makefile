@@ -1,10 +1,10 @@
-CC = cc
-
-CFLAGS = -Wall -Wextra -Werror -I./includes -MMD -g3
-
-SRC =	sources/main.c \
-		sources/init/parsing.c \
+NAME	:= cub3D
+CC 		:= cc
+CFLAGS	:= -Wall -Wextra -Werror -I./includes -MMD
+SRCS	:= sources/main.c \
+		sources/helpers.c \
 		sources/init/init.c \
+		sources/parsing/parsing.c \
 		sources/mlx_utils/pixel_put.c \
 		sources/mlx_utils/line_put.c \
 		sources/mlx_input/mlx_ft.c \
@@ -14,37 +14,54 @@ SRC =	sources/main.c \
 		sources/raycasting/check_vertical.c \
 		sources/raycasting/raycasting.c
 
-OBJS = $(SRC:.c=.o)
+OBJS := $(SRCS:.c=.o)
+DEPS := $(SRCS:.c=.d)
 
-DEPS = $(SRC:.c=.d)
+INCLUDES := -Iincludes -Ilibft/includes -Imlx_linux
+LIBS := -Llibft -lft -Lmlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+LIBRARY := libft/libft.a mlx_linux/libmlx.a
+MLX_PATH := mlx_linux
+LIBFT_PATH := libft
 
-NAME = cub3D
+ifeq ($(DEBUG), 1)
+	CFLAGS+=-g3 -gdwarf-4
+endif
+
+ifeq ($(SAN), 1)
+	CFLAGS+=-fsanitize=address -gdwarf-4
+endif
+
+ifeq ($(DEV), 1)
+	CFLAGS+=-fsanitize=address -g3 -gdwarf-4
+endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	@make -s -C libft all 
-	@make -s -C minilibx-linux all 
-	@$(CC) $(OBJS) ./libft/libft.a ./minilibx-linux/libmlx.a -lX11 -lm -lXext -o $(NAME)
+$(NAME): $(LIBRARY) $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBRARY) $(LIBS)
 	@echo "Terminé!"
 
-bonus : all
+bonus: all
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(LIBRARY):
+	make -j -sC $(MLX_PATH)
+	make -j -sC $(LIBFT_PATH)
 
 clean :
-	@rm -f $(OBJS)
-	@rm -f $(DEPS)
-	@make -s -C libft clean
+	rm -f $(OBJS)
+	rm -f $(DEPS)
+	make -sC mlx_linux clean
+	make -sC libft clean
+	@echo "Terminé!"
 
 fclean : clean
-	@rm -f $(NAME)
-	@make -s -C libft fclean
-	@make -s -C minilibx-linux clean
+	rm -f $(NAME)
+	make -sC mlx_linux clean
+	make -sC libft fclean
+	@echo "Terminé!"
 
 re : fclean all
-
--include $(PREFD)
-
 .PHONY : all clean fclean re
