@@ -11,6 +11,9 @@ SRCS	:= sources/main.c \
 		sources/parsing/colors.c \
 		sources/parsing/map.c \
 		sources/parsing/check.c \
+		sources/parsing/debug.c \
+		sources/parsing/utils.c \
+		sources/parsing/flood_fill.c \
 		sources/clear/clear_map.c \
 		sources/mlx_utils/pixel_put.c \
 		sources/mlx_utils/line_put.c \

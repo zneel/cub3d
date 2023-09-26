@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/25 12:20:55 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:30:16 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-# define SIZE_CASE 25  // ?
-# define SIZE_PLAYER 4 // ?
-# define RENDER_DIST 8 // ?
+# define SIZE_CASE 25   // ?
+# define SIZE_PLAYER 4  // ?
+# define RENDER_DIST 32 // ?
 
 # define PI M_PI
 # define P2 PI / 2
@@ -33,6 +33,18 @@
 # define DEGREE 0.0174533 // ?
 
 typedef bool	t_bool;
+
+typedef enum e_map_value
+{
+	EMPTY = 0,
+	WALL,
+	SPACE,
+	PN,
+	PS,
+	PW,
+	PE,
+	ERR,
+}				t_map_value;
 
 typedef enum e_co
 {
@@ -85,21 +97,9 @@ typedef struct s_map_data
 	int			ceiling;
 }				t_map_data;
 
-typedef enum e_map_value
-{
-	EMPTY = 0,
-	WALL,
-	PN,
-	PS,
-	PW,
-	PE,
-	ERR,
-}				t_map_value;
-
 typedef struct s_map
 {
 	t_map_value	**map;
-	char *array; // remove
 	int			x_max;
 	int			y_max;
 	t_map_data	data;

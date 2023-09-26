@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/25 13:15:02 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:19:38 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_map(t_map *map)
 {
 	map->x_max = 0;
 	map->y_max = 0;
-	map->array = NULL; // remove
 	map->map = NULL;
 	map->data = (t_map_data){NULL, NULL, NULL, NULL, -1, -1};
 }
@@ -41,6 +40,6 @@ void	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, game->x_win, game->y_win, "cub3D");
 	game->buffer.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
 	game->buffer.addr = mlx_get_data_addr(game->buffer.img,
-		&game->buffer.bit_per_pixel, &game->buffer.line_length,
-		&game->buffer.endian);
+			&game->buffer.bit_per_pixel, &game->buffer.line_length,
+			&game->buffer.endian);
 }

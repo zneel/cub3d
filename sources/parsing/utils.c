@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 17:21:07 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/26 15:15:46 by ebouvier         ###   ########.fr       */
+/*   Created: 2023/09/26 13:59:40 by ebouvier          #+#    #+#             */
+/*   Updated: 2023/09/26 14:00:00 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
-void	my_mlx_pixel_put(t_img_data *buffer, int x, int y, int color)
+int	get_x_max(t_list *list)
 {
-	char	*dst;
+	int	max;
 
-	dst = buffer->addr + (y * buffer->line_length + x * (buffer->bit_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
+	max = 0;
+	while (list)
+	{
+		if ((int)ft_strlen(list->content) > max)
+			max = ft_strlen(list->content);
+		list = list->next;
+	}
+	return (max);
 }

@@ -6,13 +6,23 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:29:31 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 12:06:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:52:11 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "ft_printf.h"
 #include <fcntl.h>
+
+int	split_len(char **split)
+{
+	int	i;
+
+	i = -1;
+	while (split[++i])
+		;
+	return (i);
+}
 
 t_bool	valid_ext(char *name)
 {

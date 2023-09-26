@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:48:35 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 11:55:59 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:26:42 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_bool	is_scene_valid(t_map *map)
 		}
 		y++;
 	}
-	if (!is_data_valid(map) || !is_data_valid(map))
+	if (!is_data_valid(map))
 		ok = false;
 	return (ok);
 }
