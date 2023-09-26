@@ -1,3 +1,5 @@
 cub3D
 *.o
 *.d
+.cache
+compile_commands.json

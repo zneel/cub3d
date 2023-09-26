@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:35:19 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 12:49:23 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 11:24:17 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ float	check_v(t_game *game, float *vx, float *vy, float angle)
 	int		chunk;
 	int		mat_x;
 	int		mat_y;
-	int		mat_p;
 	float	xo;
 	float	yo;
 	float	ntan;
@@ -55,14 +54,13 @@ float	check_v(t_game *game, float *vx, float *vy, float angle)
 	{
 		mat_x = (int)(ray.x) / SIZE_CASE;
 		mat_y = (int)(ray.y) / SIZE_CASE;
-		mat_p = mat_y * game->d_map.x_max + mat_x;
-		if (mat_p > 0 && mat_p < game->d_map.x_max * game->d_map.y_max
-			&& game->d_map.array[mat_p] == '1')
+		if (mat_x >= 0 && mat_x < game->map.x_max && mat_y >= 0
+			&& mat_y < game->map.y_max && game->map.map[mat_y][mat_x] == WALL)
 		{
 			*vx = ray.x;
 			*vy = ray.y;
 			dist_v = calc_dist(game->player.center_x, game->player.center_y,
-				*vx, *vy /*, ray.angle*/);
+					*vx, *vy /*, ray.angle*/);
 			chunk = RENDER_DIST;
 		}
 		else

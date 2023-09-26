@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:43:51 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/24 14:55:54 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:11:23 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ t_bool	check_texture_path(char *path)
 	return (true);
 }
 
-t_bool	is_scene_file_valid(char *scene)
-{
-}
+// t_bool	is_scene_file_valid(char *scene)
+// {
+// }
