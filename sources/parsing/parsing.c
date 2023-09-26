@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/25 13:13:03 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 12:08:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	debug_parsing(t_map *map)
 	printf("map:\n");
 	print_map(map);
 }
-
-///
 
 int	get_x_max(t_list *list)
 {
@@ -157,25 +155,28 @@ t_bool	lst_to_map(t_list *list, t_map *map)
 	return (true);
 }
 
-t_bool	parse_data(char *file, t_map *map)
+t_bool	parse_infos(char *line, t_map *map)
+{
+	if (parse_textures(line, map) || parse_ceiling_color(line, map)
+		|| parse_floor_color(line, map))
+		return (true);
+	return (false);
+}
+
+t_bool	parse_data(int fd, t_map *map)
 {
 	char	*line;
-	int		fd;
 	t_list	*list;
 	t_bool	ok;
 
 	list = NULL;
-	fd = open(file, O_RDONLY, 0644);
-	if (fd == -1)
-		perror_and_exit(file);
 	ok = true;
 	while (true)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (parse_textures(line, map) || parse_ceiling_color(line, map)
-			|| parse_floor_color(line, map))
+		if (parse_infos(line, map))
 		{
 			free(line);
 			continue ;
@@ -184,9 +185,6 @@ t_bool	parse_data(char *file, t_map *map)
 			parse_map_list(&list, line, map);
 		free(line);
 	}
-	if (!map->data.no || !map->data.so || !map->data.ea || !map->data.we
-		|| map->data.ceiling == -1 || map->data.floor == -1)
-		ok = false;
 	if (!lst_to_map(list, map))
 		ok = false;
 	ft_lstclear(&list, free);
@@ -196,9 +194,22 @@ t_bool	parse_data(char *file, t_map *map)
 
 t_bool	parse_cubfile(char *file, t_map *map)
 {
+	int	fd;
+
 	check_file(file);
-	if (!parse_data(file, map))
+	fd = open(file, O_RDONLY, 0644);
+	if (fd == -1)
+		perror_and_exit(file);
+	if (!parse_data(fd, map))
+	{
+		destroy_map(map);
 		return (false);
+	}
+	if (!is_scene_valid(map))
+	{
+		destroy_map(map);
+		return (false);
+	}
 	debug_parsing(map);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:46:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/25 09:53:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 11:06:29 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	parse_color(char *r, char *g, char *b)
 {
-	int ir;
-	int ig;
-	int ib;
+	int	ir;
+	int	ig;
+	int	ib;
 
 	ir = ft_atoi(r);
 	ig = ft_atoi(g);

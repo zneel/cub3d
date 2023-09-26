@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:34:45 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/25 10:54:53 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/26 11:40:49 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ t_bool	parse_ceiling_color(char *line, t_map *map);
 t_bool	parse_floor_color(char *line, t_map *map);
 int		parse_color(char *r, char *g, char *b);
 void	parse_map_list(t_list **list, char *line, t_map *map);
+t_bool	is_scene_valid(t_map *map);
 #endif
