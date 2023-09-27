@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 17:21:07 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 20:51:57 by mhoyer           ###   ########.fr       */
+/*   Created: 2023/09/27 20:14:37 by mhoyer            #+#    #+#             */
+/*   Updated: 2023/09/27 21:49:34 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
-int	my_mlx_get_color(t_img_data img, int x, int y)
-{
-	char	*dst;
+# include "cub3d.h"
 
-	dst = img.addr + (y * img.line_length + x * (img.bit_per_pixel
-				/ 8));
-	return (*(unsigned int *)dst);
-}
+# define SIZE_MAP 250
 
-void	my_mlx_pixel_put(t_img_data *buffer, int x, int y, int color)
-{
-	char	*dst;
+void			draw_obs(t_game *game, t_img_data *minimap);
+void			draw_player(t_game *game, t_img_data *minimap);
+void			draw_grid(t_game *game, t_img_data *minimap);
 
-	dst = buffer->addr + (y * buffer->line_length + x * (buffer->bit_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
-}
+#endif
