@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/26 16:19:38 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:04:49 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	init_player(t_game *game)
 {
-	game->player.x = SIZE_CASE + 19;
-	game->player.y = SIZE_CASE + 19;
-	game->player.angle = 0;
-	game->player.delta_x = cos(game->player.angle) * 5;
-	game->player.delta_y = sin(game->player.angle) * 5;
+	game->player = malloc(sizeof(t_player));
+	// handle malloc error
+	game->player->pos_x = 9;
+	game->player->pos_y = 2;
+	game->player->x = SIZE_CASE * game->player->pos_x;
+	game->player->y = SIZE_CASE * game->player->pos_y;
+	game->player->dir_x = -1;
+	game->player->dir_y = 0;
+	game->player->plane_x = 0;
+	game->player->plane_y = 0.66;
 }
 
 void	init_map(t_map *map)
@@ -31,9 +36,10 @@ void	init_map(t_map *map)
 
 void	init_game(t_game *game)
 {
-	game->x_win = 1900;
-	game->y_win = 1000;
-	game->fov = 60;
+	game->x_win = 1600;
+	game->y_win = 1200;
+	game->time = 0;
+	game->old_time = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error_and_exit("mlx_init() failed.");

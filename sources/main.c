@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/25 13:26:35 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:15:28 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_obs(t_game *game)
 		x = 0;
 		while (x < game->map.x_max)
 		{
-			if (game->map.map[y][x] == WALL)
+			if (game->map.map[y][x] == WALL || game->map.map[y][x] == SPACE)
 				print_obs(game, x * SIZE_CASE, y * SIZE_CASE, 0xFFFFFF);
 			else
 				print_obs(game, x * SIZE_CASE, y * SIZE_CASE, 0x000000);
@@ -56,19 +56,17 @@ void	draw_player(t_game *game)
 	int	x;
 	int	y;
 
-	x = game->player.x;
-	while (x < game->player.x + SIZE_PLAYER)
+	x = game->player->x - SIZE_PLAYER / 2;
+	while (x < game->player->x + SIZE_PLAYER / 2)
 	{
-		y = game->player.y;
-		while (y < game->player.y + SIZE_PLAYER)
+		y = game->player->y;
+		while (y < game->player->y + SIZE_PLAYER / 2)
 		{
-			my_mlx_pixel_put(&game->buffer, x, y, 0xFFFF00);
+			my_mlx_pixel_put(&game->buffer, x, y, 0xFF0000);
 			y++;
 		}
 		x++;
 	}
-	game->player.center_x = game->player.x + SIZE_PLAYER / 2;
-	game->player.center_y = game->player.y + SIZE_PLAYER / 2;
 }
 
 void	draw_grid(t_game *game)

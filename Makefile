@@ -19,9 +19,6 @@ SRCS	:= sources/main.c \
 		sources/mlx_utils/line_put.c \
 		sources/mlx_input/mlx_ft.c \
 		sources/mlx_input/movement.c \
-		sources/raycasting/check_horizontal.c \
-		sources/raycasting/calc_lenght_ray.c \
-		sources/raycasting/check_vertical.c \
 		sources/raycasting/raycasting.c
 
 OBJS := $(SRCS:.c=.o)

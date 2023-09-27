@@ -6,88 +6,123 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/24 12:49:10 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:26:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_wall(t_game *game, float ray_angle, float size, int nb_ray)
-{
-	float	line_h;
-	float	line_off;
-	float	angle;
-	int		w_line;
-	t_line	line;
+#define RED 0xFF0000
+#define GREEN 0x00FF00
+#define BLUE 0x0000FF
+#define WHITE 0xFFFFFF
+#define BLACK 0x000000
+#define YELLOW 0xFFFF00
 
-	angle = game->player.angle - ray_angle;
-	if (angle < 0)
-		angle += 2 * PI;
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
-	size *= cos(angle);
-	line_h = (30 * game->y_win) / size;
-	if (line_h > game->y_win)
-		line_h = game->y_win;
-	line_off = (game->y_win / 2) - (line_h / 2);
-	w_line = (game->x_win / game->fov) + 1;
-	line = create_line(nb_ray * w_line, line_off, nb_ray * w_line, line_off
-		+ line_h);
-	my_put_line_w(game, line, 0x006600, w_line);
+void	draw_ray(t_raycast casted, t_game *game, int x)
+{
+	int		color;
+	double	perp_wall_dist;
+
+	color = RED;
+	if (casted.side == 0)
+		perp_wall_dist = (casted.side_dist_x - casted.delta_dist_x);
+	else
+		perp_wall_dist = (casted.side_dist_y - casted.delta_dist_y);
+	casted.line_height = (int)(game->y_win / perp_wall_dist);
+	casted.draw_start = -casted.line_height / 2 + game->y_win / 2;
+	if (casted.draw_start < 0)
+		casted.draw_start = 0;
+	casted.draw_end = casted.line_height / 2 + game->y_win / 2;
+	if (casted.draw_end >= game->y_win)
+		casted.draw_end = game->y_win - 1;
+	if (casted.side == 1)
+		color = (color >> 1) & 8355711;
+	my_put_line(game, create_line(x, casted.draw_start, x, casted.draw_end),
+		color);
 }
 
-float	cmp_dist(t_game *game, float angle, t_ray *ray)
+void	calc_hit(t_raycast *cast, t_game *game)
 {
-	float	co_h[2];
-	float	co_v[2];
-	float	dist_h;
-	float	dist_v;
+	int	hit;
 
-	dist_h = check_h(game, &co_h[CO_X], &co_h[CO_Y], angle);
-	dist_v = check_v(game, &co_v[CO_X], &co_v[CO_Y], angle);
-	if (dist_h < dist_v)
+	hit = 0;
+	while (!hit)
 	{
-		ray->x = co_h[CO_X];
-		ray->y = co_h[CO_Y];
-		return (dist_h);
-	}
-	if (dist_v < dist_h)
-	{
-		ray->x = co_v[CO_X];
-		ray->y = co_v[CO_Y];
-		return (dist_v);
-	}
-	return (0);
-}
-
-void	draw_ray(t_game *game, t_bool calc)
-{
-	t_ray	ray;
-	int		nb_ray;
-	float	angle;
-	float	dist_mem;
-
-	nb_ray = -1;
-	angle = game->player.angle - DEGREE * (game->fov / 2);
-	if (angle < 0)
-		angle += 2 * PI;
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
-	while (++nb_ray < game->fov)
-	{
-		dist_mem = cmp_dist(game, angle, &ray);
-		if (dist_mem)
+		if (cast->side_dist_x < cast->side_dist_y)
 		{
-			if (calc == true)
-				draw_wall(game, angle, dist_mem, nb_ray);
-			else
-				my_put_line(game, create_line(game->player.center_x,
-						game->player.center_y, ray.x, ray.y), 0x00FF00);
+			cast->side_dist_x += cast->delta_dist_x;
+			cast->map_x += cast->step_x;
+			cast->side = 0;
 		}
-		angle += DEGREE;
-		if (angle < 0)
-			angle += 2 * PI;
-		if (angle > 2 * PI)
-			angle -= 2 * PI;
+		else
+		{
+			cast->side_dist_y += cast->delta_dist_y;
+			cast->map_y += cast->step_y;
+			cast->side = 1;
+		}
+		if (game->map.map[cast->map_y][cast->map_x] == WALL
+			|| game->map.map[cast->map_y][cast->map_x] == SPACE)
+			hit = 1;
+	}
+}
+
+void	calc_ray_dir(t_raycast *rc, t_game *game)
+{
+	if (rc->ray_dir_x < 0)
+	{
+		rc->step_x = -1;
+		rc->side_dist_x = (game->player->pos_x - rc->map_x) * rc->delta_dist_x;
+	}
+	else
+	{
+		rc->step_x = 1;
+		rc->side_dist_x = (rc->map_x + 1.0 - game->player->pos_x)
+			* rc->delta_dist_x;
+	}
+	if (rc->ray_dir_y < 0)
+	{
+		rc->step_y = -1;
+		rc->side_dist_y = (game->player->pos_y - rc->map_y) * rc->delta_dist_y;
+	}
+	else
+	{
+		rc->step_y = 1;
+		rc->side_dist_y = (rc->map_y + 1.0 - game->player->pos_y)
+			* rc->delta_dist_y;
+	}
+}
+
+t_raycast	cast_ray(t_game *game, int x)
+{
+	t_raycast	rc;
+
+	rc.camera_x = 2.0f * x / (double)game->x_win - 1;
+	rc.ray_dir_x = game->player->dir_x + game->player->plane_x * rc.camera_x;
+	rc.ray_dir_y = game->player->dir_y + game->player->plane_y * rc.camera_x;
+	rc.map_x = (int)game->player->pos_x;
+	rc.map_y = (int)game->player->pos_y;
+	if (rc.ray_dir_x == 0)
+		rc.delta_dist_x = 1e30f;
+	else
+		rc.delta_dist_x = fabs(1 / rc.ray_dir_x);
+	if (rc.ray_dir_y == 0)
+		rc.delta_dist_y = 1e30f;
+	else
+		rc.delta_dist_y = fabs(1 / rc.ray_dir_y);
+	calc_ray_dir(&rc, game);
+	calc_hit(&rc, game);
+	return (rc);
+}
+
+void	raycast(t_game *game)
+{
+	int x;
+	t_raycast casted;
+	x = 0;
+	while (++x < game->x_win)
+	{
+		casted = cast_ray(game, x);
+		draw_ray(casted, game, x);
 	}
 }
