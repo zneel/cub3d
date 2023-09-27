@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 11:42:54 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 12:53:02 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ typedef enum e_co
 	CO_X,
 	CO_Y,
 }				t_co;
+
+typedef struct s_vec3
+{
+	double		x;
+	double		y;
+	double		z;
+}				t_vec3;
 
 typedef struct s_img_data
 {
@@ -116,6 +123,7 @@ typedef struct s_map_data
 	char		*ea;
 	int			floor;
 	int			ceiling;
+	t_vec3		spawn;
 }				t_map_data;
 
 typedef struct s_map
@@ -171,5 +179,5 @@ void			perror_and_exit(char *prefix);
 void			destroy_map(t_map *map);
 void			free_exit(t_game *game);
 void			destroy_exit(t_game *game);
-
+void			free_split(char **split);
 #endif

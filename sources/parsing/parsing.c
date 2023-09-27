@@ -6,11 +6,12 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/26 14:36:24 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:28:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "ft_printf.h"
 #include "get_next_line.h"
 #include "libft.h"
 #include "lists.h"
@@ -26,6 +27,7 @@ t_bool	lst_to_map(t_list *list, t_map *map)
 	}
 	if (!fill_map(list, map))
 	{
+		ft_dprintf(2, "Error\nInvalid map.\n");
 		destroy_map(map);
 		return (false);
 	}

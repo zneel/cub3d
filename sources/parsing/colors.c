@@ -6,11 +6,13 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:46:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 15:06:03 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:52:22 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
+#include "parsing.h"
 
 t_bool	check_color_int(char *c)
 {
@@ -19,8 +21,9 @@ t_bool	check_color_int(char *c)
 	i = 0;
 	while (c[i])
 	{
-		if (!ft_isdigit(c[i++]))
+		if (!ft_isdigit(c[i]))
 			return (false);
+		i++;
 	}
 	return (true);
 }
@@ -38,8 +41,8 @@ int	parse_color(char *r, char *g, char *b)
 	int	ig;
 	int	ib;
 
-	// if (!check_tree_colors(r, g, b))
-	// 	return (-1);
+	if (!check_tree_colors(r, g, b))
+		return (-1);
 	ir = ft_atoi(r);
 	ig = ft_atoi(g);
 	ib = ft_atoi(b);
@@ -47,4 +50,43 @@ int	parse_color(char *r, char *g, char *b)
 		return (-1);
 	else
 		return (ir << 16 | ig << 8 | ib);
+}
+t_bool	parse_ceiling_color(char *line, t_map *map)
+{
+	char	**colors;
+
+	if (line[0] == 'C')
+	{
+		colors = ft_split(line + 1, ", \n");
+		if (!colors || !colors[0] || !colors[1] || !colors[2]
+			|| split_len(colors) > 3)
+		{
+			ft_dprintf(2, "Error\nWrong color data.\n");
+			return (free_split(colors), false);
+		}
+		map->data.ceiling = parse_color(colors[0], colors[1], colors[2]);
+		free_split(colors);
+		return (true);
+	}
+	return (false);
+}
+
+t_bool	parse_floor_color(char *line, t_map *map)
+{
+	char	**colors;
+
+	if (line[0] == 'F')
+	{
+		colors = ft_split(line + 1, ", \n");
+		if (!colors || !colors[0] || !colors[1] || !colors[2]
+			|| split_len(colors) > 3)
+		{
+			ft_dprintf(2, "Error\nWrong color data.\n");
+			return (free_split(colors), false);
+		}
+		map->data.floor = parse_color(colors[0], colors[1], colors[2]);
+		free_split(colors);
+		return (true);
+	}
+	return (false);
 }

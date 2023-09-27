@@ -1,38 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.c                                          :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/24 14:31:40 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/27 19:51:53 by ebouvier         ###   ########.fr       */
+/*   Created: 2023/09/27 20:07:50 by ebouvier          #+#    #+#             */
+/*   Updated: 2023/09/27 21:27:37 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "ft_printf.h"
+#include "parsing.h"
 
-void	free_split(char **split)
+void	parse_player_start_pos(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	if (!split)
-		return ;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-}
-void	error_and_exit(char *str)
-{
-	ft_dprintf(2, "Error\n%s\n", str);
-	exit(1);
-}
-
-void	perror_and_exit(char *prefix)
-{
-	ft_dprintf(2, "Error\n");
-	perror(prefix);
-	exit(1);
 }

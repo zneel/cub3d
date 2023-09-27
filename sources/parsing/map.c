@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:43:00 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 17:17:11 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 23:09:48 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,39 @@ t_bool	alloc_map(t_list *list, t_map *map)
 	return (true);
 }
 
+t_bool	is_spawn(t_map_value value)
+{
+	if (value == PN || value == PS || value == PE || value == PW)
+		return (true);
+	return (false);
+}
+
 t_bool	fill_map(t_list *list, t_map *map)
 {
 	int		y;
 	int		x;
 	char	*line;
+	int		spawn_count;
 
 	y = 0;
+	spawn_count = 0;
 	while (list)
 	{
 		x = 0;
 		line = list->content;
 		while (line[x])
 		{
-			if (ft_isspace(line[x]))
-				;
-			else
-			{
-				map->map[y][x] = map_content_to_map_value(line[x]);
-				if (map->map[y][x] == ERR)
-					return (false);
-			}
+			map->map[y][x] = map_content_to_map_value(line[x]);
+			if (is_spawn(map->map[y][x]))
+				spawn_count++;
+			if (map->map[y][x] == ERR)
+				return (false);
 			x++;
 		}
 		y++;
 		list = list->next;
 	}
-	return (true);
+	return (true && spawn_count == 1 && check_closed_map(map));
 }
 
 void	parse_map_list(t_list **list, char *line)
