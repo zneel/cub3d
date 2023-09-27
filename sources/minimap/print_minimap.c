@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:14:08 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 21:49:45 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/27 21:56:51 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,22 +117,17 @@ void	print_minimap(t_game *game, int to_x, int to_y)
 	x = game->player->x - SIZE_MAP;
 	x_max = game->player->x + SIZE_MAP;
 	y_max = game->player->y + SIZE_MAP;
-	if (x_max > game->map.x_max * SIZE_CASE)
-		x_max = game->map.x_max * SIZE_CASE;
-	if (y_max > game->map.y_max * SIZE_CASE)
-		y_max = game->map.y_max * SIZE_CASE;
-	if (x < 0)
-		x = 0;
 	mem = to_y;
 	while (++x < x_max)
 	{
 		y = game->player->y - SIZE_MAP;
-		if (y < 0)
-			y = 0;
 		to_y = mem;
 		while (++y < y_max)
 		{
-			my_mlx_pixel_put(&game->buffer, to_x, to_y, my_mlx_get_color(minimap, x, y));
+			if (x > 0 && y > 0 && x < game->map.x_max * SIZE_CASE && y < game->map.y_max * SIZE_CASE)
+				my_mlx_pixel_put(&game->buffer, to_x, to_y, my_mlx_get_color(minimap, x, y));
+			else
+				my_mlx_pixel_put(&game->buffer, to_x, to_y, 0x000000);
 			to_y++;
 		}
 		to_x++;

@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:14:37 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 21:49:34 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/27 21:55:22 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 
-# define SIZE_MAP 250
+# define SIZE_MAP 150
 
 void			draw_obs(t_game *game, t_img_data *minimap);
 void			draw_player(t_game *game, t_img_data *minimap);
