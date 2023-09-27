@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:29:27 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 15:03:27 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:26:29 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int	close_game(t_game *game)
 
 int	loop(t_game *game)
 {
-	// draw_ray(game, true);
 	draw_obs(game);
 	draw_grid(game);
-	draw_ray(game, false);
+	raycast(game);
 	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->buffer.img, 0, 0);
 	mlx_destroy_image(game->mlx, game->buffer.img);

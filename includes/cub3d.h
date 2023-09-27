@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 15:27:58 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:55:17 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define SIZE_CASE 32    // ?
 # define SIZE_PLAYER 4.0 // ?
 # define RENDER_DIST 32  // ?
-# define ROT_SPEED 0.1
+# define ROT_SPEED 10
 # define MOVE_SPEED 10
 
 typedef bool	t_bool;
@@ -78,6 +78,24 @@ typedef struct s_player
 	double		plane_y;
 }				t_player;
 
+typedef struct s_raycast
+{
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}				t_raycast;
 typedef struct s_map_data
 {
 	char		*no;
@@ -124,7 +142,7 @@ void			my_put_line_w(t_game *game, t_line line, int c, int w);
 void			draw_obs(t_game *game);
 void			draw_player(t_game *game);
 void			draw_grid(t_game *game);
-void			draw_ray(t_game *game, t_bool calc);
+void			raycast(t_game *game);
 
 // key input
 int				close_game(t_game *game);
