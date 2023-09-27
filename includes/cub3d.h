@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/26 17:30:16 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:27:58 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,11 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-# define SIZE_CASE 25   // ?
-# define SIZE_PLAYER 4  // ?
-# define RENDER_DIST 32 // ?
-
-# define PI M_PI
-# define P2 PI / 2
-# define P3 3 * PI / 2
-# define DEGREE 0.0174533 // ?
+# define SIZE_CASE 32    // ?
+# define SIZE_PLAYER 4.0 // ?
+# define RENDER_DIST 32  // ?
+# define ROT_SPEED 0.1
+# define MOVE_SPEED 10
 
 typedef bool	t_bool;
 
@@ -63,28 +60,22 @@ typedef struct s_img_data
 
 typedef struct s_line
 {
-	float		x1;
-	float		y1;
-	float		x2;
-	float		y2;
+	double		x1;
+	double		y1;
+	double		x2;
+	double		y2;
 }				t_line;
-
-typedef struct s_ray
-{
-	float		x;
-	float		y;
-	float		angle;
-}				t_ray;
 
 typedef struct s_player
 {
-	float		x;
-	float		y;
-	float		center_x;
-	float		center_y;
-	float		delta_x;
-	float		delta_y;
-	float		angle;
+	double		x;
+	double		y;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_player;
 
 typedef struct s_map_data
@@ -111,10 +102,11 @@ typedef struct s_game
 	void		*win;
 	int			x_win;
 	int			y_win;
-	int			fov;
+	double		time;
+	double		old_time;
 	t_img_data	buffer;
 	t_map		map;
-	t_player	player;
+	t_player	*player;
 }				t_game;
 
 // init
@@ -133,12 +125,6 @@ void			draw_obs(t_game *game);
 void			draw_player(t_game *game);
 void			draw_grid(t_game *game);
 void			draw_ray(t_game *game, t_bool calc);
-
-// raycasting
-float			calc_dist(float player_x, float player_y, float ray_x,
-					float ray_y);
-float			check_v(t_game *game, float *vx, float *vy, float angle);
-float			check_h(t_game *game, float *hx, float *hy, float angle);
 
 // key input
 int				close_game(t_game *game);
