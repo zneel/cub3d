@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.c                                          :+:      :+:    :+:   */
+/*   print_background.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/24 14:31:40 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 19:31:20 by mhoyer           ###   ########.fr       */
+/*   Created: 2023/09/28 19:29:16 by mhoyer            #+#    #+#             */
+/*   Updated: 2023/09/28 19:40:55 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "ft_printf.h"
 
-void	free_split(char **split)
+void	print_background(t_game *game)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	if (!split)
-		return ;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-}
-
-void	error_and_exit(char *str)
-{
-	ft_dprintf(2, "Error\n%s\n", str);
-	exit(1);
-}
-
-void	perror_and_exit(char *prefix)
-{
-	ft_dprintf(2, "Error\n");
-	perror(prefix);
-	exit(1);
+	x = -1;
+	while (++x < game->x_win)
+	{
+		y = -1;
+		while (++y < game->y_win)
+		{
+			my_mlx_pixel_put(&game->buffer, x, y,
+				my_mlx_get_color(game->background, x, y));
+		}
+	}
 }

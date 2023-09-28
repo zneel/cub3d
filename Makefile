@@ -22,10 +22,14 @@ SRCS	:= sources/main.c \
 		sources/minimap/draw_player.c \
 		sources/minimap/draw_grid.c \
 		sources/minimap/draw_obstacle.c \
+		sources/display/print_background.c \
 		sources/mlx_utils/get_color.c \
 		sources/mlx_utils/pixel_put.c \
 		sources/mlx_utils/line_put.c \
 		sources/mlx_input/mlx_ft.c \
+		sources/mlx_input/move_utils.c \
+		sources/mlx_input/check_input.c \
+		sources/mlx_input/rotate.c \
 		sources/mlx_input/movement.c \
 		sources/raycasting/raycasting.c
 

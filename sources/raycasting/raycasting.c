@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 12:53:45 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:40:23 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,9 @@ t_raycast	cast_ray(t_game *game, int x)
 
 void	raycast(t_game *game)
 {
-	int x;
-	t_raycast casted;
+	int			x;
+	t_raycast	casted;
+
 	x = 0;
 	while (++x < game->x_win)
 	{

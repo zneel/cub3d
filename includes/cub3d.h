@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 14:44:32 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:36:35 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,22 @@ void			my_put_line(t_game *game, t_img_data img, t_line line,
 // display
 void			print_minimap(t_game *game, int x, int y);
 void			raycast(t_game *game);
+void			print_background(t_game *game);
+
+// move
+double			degree_to_radians(double degree);
+double			calculate_player_direction(t_player *player);
+void			key_right(t_game *game);
+void			key_left(t_game *game);
+void			key_w(t_game *game);
+void			key_s(t_game *game);
+void			key_d(t_game *game);
+void			key_a(t_game *game);
 
 // key input
 int				close_game(t_game *game);
 int				check_press(int key, t_game *game);
 int				check_release(int key, t_game *game);
-void			do_move(t_game *game);
 int				loop(t_game *game);
 
 // parsing
@@ -196,4 +206,5 @@ void			destroy_map(t_map *map);
 void			free_exit(t_game *game);
 void			destroy_exit(t_game *game);
 void			free_split(char **split);
+
 #endif

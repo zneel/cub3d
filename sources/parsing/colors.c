@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:46:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 12:09:25 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:37:50 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	parse_color(char *r, char *g, char *b)
 	else
 		return (ir << 16 | ig << 8 | ib);
 }
+
 t_bool	parse_ceiling_color(char *line, t_map *map)
 {
 	char	**colors;

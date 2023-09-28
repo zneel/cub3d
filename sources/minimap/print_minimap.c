@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:14:08 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 10:33:40 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 19:40:41 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_for_print(t_game *game, int *x, int *x_max, int *y_max)
 }
 
 void	do_print(t_game *game, t_img_data minimap, int to_x, int to_y)
-{	
+{
 	int	x;
 	int	y;
 	int	x_max;
