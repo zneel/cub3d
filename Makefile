@@ -15,6 +15,8 @@ SRCS	:= sources/main.c \
 		sources/parsing/utils.c \
 		sources/parsing/flood_fill.c \
 		sources/clear/clear_map.c \
+		sources/clear/free_exit.c \
+		sources/clear/destroy_exit.c \
 		sources/minimap/print_minimap.c \
 		sources/minimap/draw_player.c \
 		sources/minimap/draw_grid.c \

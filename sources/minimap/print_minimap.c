@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:14:08 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 09:55:17 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 10:33:40 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	print_minimap(t_game *game, int to_x, int to_y)
 
 	minimap = init_minimap(game);
 	do_print(game, minimap, to_x, to_y);
+	mlx_destroy_image(game->mlx, minimap.img);
 }
