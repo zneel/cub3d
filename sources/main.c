@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 20:35:04 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 11:00:34 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ void	init_cub3d(t_game *game)
 {
 	init_game(game);
 	init_player(game);
+}
+
+void	hook_input(t_game game)
+{
+	mlx_loop_hook(game.mlx, &loop, &game);
+	mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
+	mlx_hook(game.win, 17, 0, &close_game, &game);
+	mlx_loop(game.mlx);
 }
 
 int	main(int argc, char **argv)
@@ -29,9 +37,6 @@ int	main(int argc, char **argv)
 		exit(1);
 	init_game(&game);
 	init_player(&game);
-	mlx_loop_hook(game.mlx, &loop, &game);
-	mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
-	mlx_hook(game.win, 17, 0, &close_game, &game);
-	mlx_loop(game.mlx);
+	hook_input(game);
 	return (0);
 }

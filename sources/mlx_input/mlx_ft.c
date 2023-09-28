@@ -6,11 +6,27 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:29:27 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 10:39:36 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 11:37:51 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	print_background(t_game *game)
+{
+	int	x;
+	int	y;
+	
+	x = -1;
+	while (++x < game->x_win)
+	{
+		y = -1;
+		while (++y < game->y_win)
+		{
+			my_mlx_pixel_put(&game->buffer, x, y, my_mlx_get_color(game->background, x, y));
+		}
+	}
+}
 
 int	close_game(t_game *game)
 {
@@ -21,6 +37,7 @@ int	close_game(t_game *game)
 
 int	loop(t_game *game)
 {
+	print_background(game);
 	raycast(game);
 	print_minimap(game, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->buffer.img, 0, 0);

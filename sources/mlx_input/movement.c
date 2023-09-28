@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:28:48 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 17:10:19 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 10:56:19 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ int	check_input(int key, t_game *game)
 {
 	if (key == XK_w)
 		key_w(game);
-	if (key == XK_a)
-		key_a(game);
 	if (key == XK_s)
 		key_s(game);
+	if (key == XK_a)
+		key_a(game);
 	if (key == XK_d)
 		key_d(game);
 	if (key == XK_Left)
