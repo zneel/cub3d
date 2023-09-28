@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 12:08:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:10:21 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ t_bool	parse_cubfile(char *file, t_map *map)
 		return (false);
 	}
 	debug_parsing(map);
+	parse_player_start_pos(map);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:57:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 13:58:08 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:31:57 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,8 @@ void	debug_parsing(t_map *map)
 	printf("C:#%X\n", map->data.ceiling);
 	printf("map:\n");
 	print_map(map);
+	printf("DIRX:%f\n", map->data.spawn.dir.x);
+	printf("DIRY%f\n", map->data.spawn.dir.y);
+	printf("SPAWNX%f\n", map->data.spawn.x);
+	printf("SPAWNY%f\n", map->data.spawn.y);
 }
