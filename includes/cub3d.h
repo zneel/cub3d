@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 10:06:32 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 10:44:14 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,8 @@ void			init_map(t_map *map);
 int				my_mlx_get_color(t_img_data img, int x, int y);
 void			my_mlx_pixel_put(t_img_data *buffer, int x, int y, int c);
 t_line			create_line(float x1, float y1, float x2, float y2);
-void			my_put_line(t_game *game, t_img_data img, t_line line, int color);
+void			my_put_line(t_game *game, t_img_data img, t_line line,
+					int color);
 
 // display
 void			print_minimap(t_game *game, int x, int y);
@@ -167,4 +168,7 @@ void			perror_and_exit(char *prefix);
 
 // clear
 void			destroy_map(t_map *map);
+void			free_exit(t_game *game);
+void			destroy_exit(t_game *game);
+
 #endif
