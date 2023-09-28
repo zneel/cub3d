@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 11:37:26 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 11:43:07 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	init_background(t_game *game)
 
 void	init_game(t_game *game)
 {
-	game->x_win = 1280;
-	game->y_win = 720;
+	game->x_win = X_SCREEN;
+	game->y_win = Y_SCREEN;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error_and_exit("mlx_init() failed.");
