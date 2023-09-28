@@ -6,100 +6,42 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:14:08 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 08:49:33 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 09:55:17 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap.h"
 
-void	print_obs(t_img_data *minimap, int x_start, int y_start,
-		unsigned int color)
-{
-	int	x;
-	int	y;
-
-	x = x_start;
-	while (x <= x_start + SIZE_CASE)
-	{
-		y = y_start;
-		while (y <= y_start + SIZE_CASE)
-		{
-			my_mlx_pixel_put(minimap, x, y, color);
-			y++;
-		}
-		x++;
-	}
-}
-
-void	draw_obs(t_game *game, t_img_data *minimap)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < game->map.y_max)
-	{
-		x = 0;
-		while (x < game->map.x_max)
-		{
-			if (game->map.map[y][x] == WALL || game->map.map[y][x] == SPACE)
-				print_obs(minimap, x * SIZE_CASE, y * SIZE_CASE, 0xFFFFFF);
-			else
-				print_obs(minimap, x * SIZE_CASE, y * SIZE_CASE, 0x000000);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_grid(t_game *game, t_img_data *minimap)
-{
-	int	x;
-	int	y;
-
-	x = SIZE_CASE;
-	while (x < game->map.x_max * SIZE_CASE)
-	{
-		y = 0;
-		while (y < game->map.y_max * SIZE_CASE)
-		{
-			my_mlx_pixel_put(minimap, x, y, 0x606060);
-			y++;
-		}
-		x += SIZE_CASE;
-	}
-	y = SIZE_CASE;
-	while (y < game->map.y_max * SIZE_CASE)
-	{
-		x = 0;
-		while (x < game->map.x_max * SIZE_CASE)
-		{
-			my_mlx_pixel_put(minimap, x, y, 0x606060);
-			x++;
-		}
-		y += SIZE_CASE;
-	}
-}
-
-void	print_minimap(t_game *game, int to_x, int to_y)
+t_img_data	init_minimap(t_game *game)
 {
 	t_img_data	minimap;
-	int			x;
-	int			y;
-	int			x_max;
-	int			y_max;
-	int			mem;
 
 	minimap.img = mlx_new_image(game->mlx, game->map.x_max * SIZE_CASE,
-		game->map.y_max * SIZE_CASE);
+			game->map.y_max * SIZE_CASE);
 	minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bit_per_pixel,
-		&minimap.line_length, &minimap.endian);
+			&minimap.line_length, &minimap.endian);
 	draw_obs(game, &minimap);
 	draw_grid(game, &minimap);
 	draw_player(game, &minimap);
-	x = game->player->x - SIZE_MAP;
-	x_max = game->player->x + SIZE_MAP;
-	y_max = game->player->y + SIZE_MAP;
+	return (minimap);
+}
+
+void	init_for_print(t_game *game, int *x, int *x_max, int *y_max)
+{
+	*x = game->player->x - SIZE_MAP;
+	*x_max = game->player->x + SIZE_MAP;
+	*y_max = game->player->y + SIZE_MAP;
+}
+
+void	do_print(t_game *game, t_img_data minimap, int to_x, int to_y)
+{	
+	int	x;
+	int	y;
+	int	x_max;
+	int	y_max;
+	int	mem;
+
+	init_for_print(game, &x, &x_max, &y_max);
 	mem = to_y;
 	while (++x < x_max)
 	{
@@ -117,4 +59,12 @@ void	print_minimap(t_game *game, int to_x, int to_y)
 		}
 		to_x++;
 	}
+}
+
+void	print_minimap(t_game *game, int to_x, int to_y)
+{
+	t_img_data	minimap;
+
+	minimap = init_minimap(game);
+	do_print(game, minimap, to_x, to_y);
 }

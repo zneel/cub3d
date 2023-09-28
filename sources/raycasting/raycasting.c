@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 08:06:51 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 09:57:48 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ t_raycast	cast_ray(t_game *game, int x)
 	rc.map_x = (int)game->player->pos_x;
 	rc.map_y = (int)game->player->pos_y;
 	if (rc.ray_dir_x == 0)
-		rc.delta_dist_x = 1e30f;
+		rc.delta_dist_x = INF;
 	else
 		rc.delta_dist_x = fabs(1 / rc.ray_dir_x);
 	if (rc.ray_dir_y == 0)
-		rc.delta_dist_y = 1e30f;
+		rc.delta_dist_y = INF;
 	else
 		rc.delta_dist_y = fabs(1 / rc.ray_dir_y);
 	calc_ray_dir(&rc, game);
