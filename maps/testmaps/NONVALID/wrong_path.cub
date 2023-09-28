@@ -1,7 +1,7 @@
-NO hi.png
-SO IMG/Wolfenstein/greystone.png
-WE IMG/Wolfenstein/wood.png
-EA IMG/Wolfenstein/redbrick.png
+NO hi.xpm
+SO textures/greystone.xpm
+WE textures/wood.xpm
+EA textures/redbrick.xpm
 
 F 220,100,0
 C 225,30,0

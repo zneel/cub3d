@@ -1,8 +1,8 @@
-NO IMG/Wolfenstein/bluestone.png
-SO IMG/Wolfenstein/greystone.png
+NO textures/bluestone.xpm
+SO textures/greystone.xpm
 
-WE IMG/Wolfenstein/wood.png
-EA IMG/Wolfenstein/redbrick.png
+WE textures/wood.xpm
+EA textures/redbrick.xpm
 
 
 

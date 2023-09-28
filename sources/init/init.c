@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 12:53:07 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:53:38 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	init_map(t_map *map)
 	map->x_max = 0;
 	map->y_max = 0;
 	map->map = NULL;
-	map->data = (t_map_data){NULL, NULL, NULL, NULL, -1, -1, (t_vec3){-1, -1,
-		-1}};
+	map->data = (t_map_data){NULL, false, NULL, false, NULL, false, NULL, false,
+		-1, -1, (t_vec3){-1, -1, (t_vec2){0, 1}}};
 }
 
 void	init_background(t_game *game)
