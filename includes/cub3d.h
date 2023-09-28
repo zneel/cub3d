@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 11:42:54 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 12:53:30 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,20 @@ typedef enum e_co
 	CO_X,
 	CO_Y,
 }				t_co;
+
+// NO 0,1 SO 0,-1 WE -1,0 EA 1,0;
+typedef struct s_vec2
+{
+	double		x;
+	double		y;
+}				t_vec2;
+
+typedef struct s_vec3
+{
+	double		x;
+	double		y;
+	t_vec2		dir;
+}				t_vec3;
 
 typedef struct s_img_data
 {
@@ -108,14 +122,20 @@ typedef struct s_raycast
 	int			draw_start;
 	int			draw_end;
 }				t_raycast;
+
 typedef struct s_map_data
 {
 	char		*no;
+	t_bool		no_bool;
 	char		*so;
+	t_bool		so_bool;
 	char		*we;
+	t_bool		we_bool;
 	char		*ea;
+	t_bool		ea_bool;
 	int			floor;
 	int			ceiling;
+	t_vec3		spawn;
 }				t_map_data;
 
 typedef struct s_map
@@ -171,5 +191,5 @@ void			perror_and_exit(char *prefix);
 void			destroy_map(t_map *map);
 void			free_exit(t_game *game);
 void			destroy_exit(t_game *game);
-
+void			free_split(char **split);
 #endif

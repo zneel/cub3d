@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:48:35 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 17:26:42 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:03:36 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,30 @@
 #include "parsing.h"
 #include <fcntl.h>
 
+t_bool	check_texture_extension(char *file)
+{
+	int	len;
+
+	if (!file)
+		return (false);
+	len = ft_strlen(file);
+	if (len < 4)
+		return (false);
+	if (ft_strncmp(file + len - 4, ".xpm", 4))
+	{
+		ft_dprintf(2, "Error\nInvalid texture extension: %s.\n", file);
+		return (false);
+	}
+	return (true);
+}
+
 t_bool	check_texture_file(char *file)
 {
 	int	fd;
 
 	if (!file)
+		return (false);
+	if (!check_texture_extension(file))
 		return (false);
 	fd = open(file, O_RDWR, 0644);
 	if (fd == -1)
@@ -47,13 +66,13 @@ t_bool	check_paths(t_map *map)
 t_bool	is_data_valid(t_map *map)
 {
 	if (map->data.ceiling == -1 || map->data.floor == -1 || map->data.no == NULL
-		|| map->data.ea == NULL || map->data.so == NULL || map->data.we == NULL)
+		|| map->data.ea == NULL || map->data.so == NULL || map->data.we == NULL
+		|| !map->data.no_bool || !map->data.ea_bool || !map->data.so_bool
+		|| !map->data.we_bool)
 	{
 		ft_dprintf(2, "Error\nInvalid scene data.\n");
 		return (false);
 	}
-	if (!check_paths(map))
-		return (false);
 	return (true);
 }
 
@@ -77,7 +96,7 @@ t_bool	is_scene_valid(t_map *map)
 		}
 		y++;
 	}
-	if (!is_data_valid(map))
+	if (!is_data_valid(map) || !check_paths(map))
 		ok = false;
 	return (ok);
 }
