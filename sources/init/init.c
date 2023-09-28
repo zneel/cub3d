@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 14:44:22 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:12:03 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void	set_camera_plane(t_game *game)
 {
 	if (game->map.data.dir == PN)
 	{
-		game->player->plane_x = -2 * atan(0.66 / 1);
+		game->player->plane_x = 2 * atan(0.66 / 1);
 		game->player->plane_y = 0;
 	}
 	else if (game->map.data.dir == PS)
 	{
-		game->player->plane_x = 2 * atan(0.66 / 1);
+		game->player->plane_x = -2 * atan(0.66 / 1);
 		game->player->plane_y = 0;
 	}
 	else if (game->map.data.dir == PW)
 	{
 		game->player->plane_x = 0;
-		game->player->plane_y = 2 * atan(0.66 / 1);
+		game->player->plane_y = -2 * atan(0.66 / 1);
 	}
 	else if (game->map.data.dir == PE)
 	{
 		game->player->plane_x = 0;
-		game->player->plane_y = -2 * atan(0.66 / 1);
+		game->player->plane_y = 2 * atan(0.66 / 1);
 	}
 }
 

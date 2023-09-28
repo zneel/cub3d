@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:28:48 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 14:07:49 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 15:12:39 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	key_w(t_game *game)
 	game->player->pos_y = game->player->y / SIZE_CASE;
 }
 
-void	key_left(t_game *game)
+void	key_right(t_game *game)
 {
 	t_player	old;
 	t_player	*current;
@@ -47,7 +47,7 @@ void	key_left(t_game *game)
 		+ current->plane_y * cos(degree_to_radians(ROT_SPEED));
 }
 
-void	key_right(t_game *game)
+void	key_left(t_game *game)
 {
 	t_player	old;
 	t_player	*current;
@@ -72,7 +72,7 @@ void	key_s(t_game *game)
 	game->player->pos_y = game->player->y / SIZE_CASE;
 }
 
-void	key_a(t_game *game)
+void	key_d(t_game *game)
 {
 	double	facing_direction;
 
@@ -83,7 +83,7 @@ void	key_a(t_game *game)
 	game->player->pos_y = game->player->y / SIZE_CASE;
 }
 
-void	key_d(t_game *game)
+void	key_a(t_game *game)
 {
 	double	facing_direction;
 
@@ -144,5 +144,4 @@ void	do_move(t_game *game)
 		key_left(game);
 	if (game->player->move[5])
 		key_right(game);
-		
 }
