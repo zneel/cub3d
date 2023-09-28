@@ -16,6 +16,8 @@ SRCS	:= sources/main.c \
 		sources/parsing/flood_fill.c \
 		sources/clear/clear_map.c \
 		sources/minimap/print_minimap.c \
+		sources/minimap/draw_player.c \
+		sources/mlx_utils/get_color.c \
 		sources/mlx_utils/pixel_put.c \
 		sources/mlx_utils/line_put.c \
 		sources/mlx_input/mlx_ft.c \

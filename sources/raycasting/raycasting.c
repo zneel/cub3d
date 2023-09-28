@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 16:26:04 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 08:06:51 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_ray(t_raycast casted, t_game *game, int x)
 		casted.draw_end = game->y_win - 1;
 	if (casted.side == 1)
 		color = (color >> 1) & 8355711;
-	my_put_line(game, create_line(x, casted.draw_start, x, casted.draw_end),
+	my_put_line(game, game->buffer, create_line(x, casted.draw_start, x, casted.draw_end),
 		color);
 }
 
