@@ -6,12 +6,13 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:29:31 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/26 14:52:11 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 16:09:48 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "ft_printf.h"
+#include "get_next_line.h"
 #include <fcntl.h>
 
 int	split_len(char **split)
@@ -37,6 +38,32 @@ t_bool	valid_ext(char *name)
 	return (true);
 }
 
+t_bool	check_random(int fd)
+{
+	char	*line;
+	int		i;
+
+	while (true)
+	{
+		i = -1;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		while (line[++i])
+		{
+			if (!ft_isascii(line[i]))
+			{
+				free(line);
+				get_next_line(-1);
+				return (false);
+			}
+		}
+		free(line);
+		i++;
+	}
+	return (true);
+}
+
 void	check_file(char *file)
 {
 	int	fd;
@@ -48,6 +75,11 @@ void	check_file(char *file)
 	{
 		close(fd);
 		error_and_exit("Invalid file extension.");
+	}
+	if (!check_random(fd))
+	{
+		close(fd);
+		error_and_exit("Invalid file.");
 	}
 	close(fd);
 }
