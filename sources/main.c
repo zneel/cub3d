@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 14:07:55 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 19:31:07 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	hook_input(t_game game)
 {
 	mlx_loop_hook(game.mlx, &loop, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &check_press, &game);
-    mlx_hook(game.win, KeyRelease, KeyReleaseMask, &check_release, &game);
+	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &check_release, &game);
 	mlx_hook(game.win, 17, 0, &close_game, &game);
 	mlx_loop(game.mlx);
 }
