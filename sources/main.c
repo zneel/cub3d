@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 11:00:34 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 13:19:17 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int	main(int argc, char **argv)
 	init_map(&game.map);
 	if (!parse_cubfile(argv[1], &game.map))
 		exit(1);
-	init_game(&game);
-	init_player(&game);
+	init_cub3d(&game);
 	hook_input(game);
 	return (0);
 }

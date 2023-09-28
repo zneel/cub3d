@@ -14,6 +14,7 @@ SRCS	:= sources/main.c \
 		sources/parsing/debug.c \
 		sources/parsing/utils.c \
 		sources/parsing/map_check.c \
+		sources/parsing/player.c \
 		sources/clear/clear_map.c \
 		sources/clear/free_exit.c \
 		sources/clear/destroy_exit.c \

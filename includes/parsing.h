@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:34:45 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 12:08:16 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:03:06 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ t_bool	fill_map(t_list *list, t_map *map);
 void	debug_parsing(t_map *map);
 int		split_len(char **split);
 t_bool	check_closed_map(t_map *map);
-
+void	parse_player_start_pos(t_map *map);
 #endif

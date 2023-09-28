@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 12:53:30 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:29:01 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ typedef enum e_co
 // NO 0,1 SO 0,-1 WE -1,0 EA 1,0;
 typedef struct s_vec2
 {
-	double		x;
-	double		y;
+	float		x;
+	float		y;
 }				t_vec2;
 
 typedef struct s_vec3
 {
-	double		x;
-	double		y;
+	float		x;
+	float		y;
 	t_vec2		dir;
 }				t_vec3;
 
