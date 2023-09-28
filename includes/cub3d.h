@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 09:57:34 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 10:06:32 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define RENDER_DIST 32  // ?
 # define ROT_SPEED 10
 # define MOVE_SPEED 10
-# define INF 1e30f
 
 typedef bool	t_bool;
 
