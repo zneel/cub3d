@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:07:50 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 13:31:45 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:40:10 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 t_vec2	spawn_dir(t_map *map, int x, int y)
 {
 	if (map->map[y][x] == PN)
-		return ((t_vec2){0, 1});
-	else if (map->map[y][x] == PS)
 		return ((t_vec2){0, -1});
+	else if (map->map[y][x] == PS)
+		return ((t_vec2){0, 1});
 	else if (map->map[y][x] == PE)
 		return ((t_vec2){1, 0});
 	else if (map->map[y][x] == PW)
@@ -50,6 +50,7 @@ void	parse_player_start_pos(t_map *map)
 				map->data.spawn.dir = spawn_dir(map, x, y);
 				map->data.spawn.x = x;
 				map->data.spawn.y = y;
+				map->data.dir = map->map[y][x];
 			}
 			x++;
 		}
