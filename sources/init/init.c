@@ -3,18 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 13:55:22 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 14:44:22 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	set_camera_plane(t_game *game)
+{
+	if (game->map.data.dir == PN)
+	{
+		game->player->plane_x = -2 * atan(0.66 / 1);
+		game->player->plane_y = 0;
+	}
+	else if (game->map.data.dir == PS)
+	{
+		game->player->plane_x = 2 * atan(0.66 / 1);
+		game->player->plane_y = 0;
+	}
+	else if (game->map.data.dir == PW)
+	{
+		game->player->plane_x = 0;
+		game->player->plane_y = 2 * atan(0.66 / 1);
+	}
+	else if (game->map.data.dir == PE)
+	{
+		game->player->plane_x = 0;
+		game->player->plane_y = -2 * atan(0.66 / 1);
+	}
+}
+
 void	init_player(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	game->player = malloc(sizeof(t_player));
@@ -28,9 +52,8 @@ void	init_player(t_game *game)
 	game->player->plane_x = 0;
 	game->player->plane_y = 0.66;
 	while (++i < 6)
-	{
 		game->player->move[i] = false;
-	}
+	set_camera_plane(game);
 }
 
 void	init_map(t_map *map)
@@ -39,7 +62,7 @@ void	init_map(t_map *map)
 	map->y_max = 0;
 	map->map = NULL;
 	map->data = (t_map_data){NULL, false, NULL, false, NULL, false, NULL, false,
-		-1, -1, (t_vec3){-1, -1, (t_vec2){0, 1}}};
+		-1, -1, (t_vec3){-1, -1, (t_vec2){0, 1}}, PN};
 }
 
 void	init_background(t_game *game)
