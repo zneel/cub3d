@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:29:27 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 11:37:51 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 14:05:49 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	close_game(t_game *game)
 
 int	loop(t_game *game)
 {
+	do_move(game);
 	print_background(game);
 	raycast(game);
 	print_minimap(game, 0, 0);

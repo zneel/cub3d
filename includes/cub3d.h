@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 13:29:01 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:08:31 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define SIZE_CASE 32    // ?
 # define SIZE_PLAYER 4.0 // ?
 # define RENDER_DIST 32  // ?
-# define ROT_SPEED 10
-# define MOVE_SPEED 10
+# define ROT_SPEED 2
+# define MOVE_SPEED 2
 
 typedef bool	t_bool;
 
@@ -102,6 +102,7 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	t_bool		move[6];
 }				t_player;
 
 typedef struct s_raycast
@@ -176,7 +177,9 @@ void			raycast(t_game *game);
 
 // key input
 int				close_game(t_game *game);
-int				check_input(int key, t_game *game);
+int				check_press(int key, t_game *game);
+int				check_release(int key, t_game *game);
+void			do_move(t_game *game);
 int				loop(t_game *game);
 
 // parsing

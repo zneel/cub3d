@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 13:19:17 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:07:55 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	init_cub3d(t_game *game)
 void	hook_input(t_game game)
 {
 	mlx_loop_hook(game.mlx, &loop, &game);
-	mlx_hook(game.win, KeyPress, KeyPressMask, &check_input, &game);
+	mlx_hook(game.win, KeyPress, KeyPressMask, &check_press, &game);
+    mlx_hook(game.win, KeyRelease, KeyReleaseMask, &check_release, &game);
 	mlx_hook(game.win, 17, 0, &close_game, &game);
 	mlx_loop(game.mlx);
 }

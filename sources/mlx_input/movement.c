@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:28:48 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 13:30:22 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:07:49 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,55 @@ void	key_d(t_game *game)
 	game->player->pos_y = game->player->y / SIZE_CASE;
 }
 
-int	check_input(int key, t_game *game)
+int	check_press(int key, t_game *game)
 {
 	if (key == XK_w)
-		key_w(game);
+		game->player->move[0] = true;
 	if (key == XK_s)
-		key_s(game);
+		game->player->move[1] = true;
 	if (key == XK_a)
-		key_a(game);
+		game->player->move[2] = true;
 	if (key == XK_d)
-		key_d(game);
+		game->player->move[3] = true;
 	if (key == XK_Left)
-		key_left(game);
+		game->player->move[4] = true;
 	if (key == XK_Right)
-		key_right(game);
+		game->player->move[5] = true;
 	if (key == XK_Escape)
 		close_game(game);
 	return (0);
+}
+
+int	check_release(int key, t_game *game)
+{
+	if (key == XK_w)
+		game->player->move[0] = false;
+	if (key == XK_s)
+		game->player->move[1] = false;
+	if (key == XK_a)
+		game->player->move[2] = false;
+	if (key == XK_d)
+		game->player->move[3] = false;
+	if (key == XK_Left)
+		game->player->move[4] = false;
+	if (key == XK_Right)
+		game->player->move[5] = false;
+	return (0);
+}
+
+void	do_move(t_game *game)
+{
+	if (game->player->move[0])
+		key_w(game);
+	if (game->player->move[1])
+		key_s(game);
+	if (game->player->move[2])
+		key_a(game);
+	if (game->player->move[3])
+		key_d(game);
+	if (game->player->move[4])
+		key_left(game);
+	if (game->player->move[5])
+		key_right(game);
+		
 }

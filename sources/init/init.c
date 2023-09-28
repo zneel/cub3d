@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 13:16:19 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:55:22 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	init_player(t_game *game)
 {
+	int i;
+
+	i = -1;
 	game->player = malloc(sizeof(t_player));
 	// handle malloc error
 	game->player->pos_x = game->map.data.spawn.x;
@@ -24,6 +27,10 @@ void	init_player(t_game *game)
 	game->player->dir_y = game->map.data.spawn.dir.y;
 	game->player->plane_x = 0;
 	game->player->plane_y = 0.66;
+	while (++i < 6)
+	{
+		game->player->move[i] = false;
+	}
 }
 
 void	init_map(t_map *map)
