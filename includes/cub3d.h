@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 10:44:14 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/28 11:37:21 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,7 @@ typedef struct s_game
 	void		*win;
 	int			x_win;
 	int			y_win;
-	double		time;
-	double		old_time;
+	t_img_data	background;
 	t_img_data	buffer;
 	t_map		map;
 	t_player	*player;
