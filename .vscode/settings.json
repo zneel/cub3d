@@ -5,6 +5,10 @@
         "libc-header-start.h": "c",
         "stdbool.h": "c",
         "fcntl.h": "c",
-        "parsing.h": "c"
+        "parsing.h": "c",
+        "x.h": "c",
+        "mlx.h": "c",
+        "lists.h": "c",
+        "errno.h": "c"
     }
 }

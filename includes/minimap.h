@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 17:21:07 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 07:31:59 by mhoyer           ###   ########.fr       */
+/*   Created: 2023/09/27 20:14:37 by mhoyer            #+#    #+#             */
+/*   Updated: 2023/09/27 21:55:22 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
-void	my_mlx_pixel_put(t_img_data *buffer, int x, int y, int color)
-{
-	char	*dst;
+# include "cub3d.h"
 
-	dst = buffer->addr + (y * buffer->line_length + x * (buffer->bit_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
-}
+# define SIZE_MAP 150
+
+void			draw_obs(t_game *game, t_img_data *minimap);
+void			draw_player(t_game *game, t_img_data *minimap);
+void			draw_grid(t_game *game, t_img_data *minimap);
+
+#endif

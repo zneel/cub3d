@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 16:26:04 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 10:07:08 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_ray(t_raycast casted, t_game *game, int x)
 		casted.draw_end = game->y_win - 1;
 	if (casted.side == 1)
 		color = (color >> 1) & 8355711;
-	my_put_line(game, create_line(x, casted.draw_start, x, casted.draw_end),
+	my_put_line(game, game->buffer, create_line(x, casted.draw_start, x, casted.draw_end),
 		color);
 }
 
@@ -103,11 +103,11 @@ t_raycast	cast_ray(t_game *game, int x)
 	rc.map_x = (int)game->player->pos_x;
 	rc.map_y = (int)game->player->pos_y;
 	if (rc.ray_dir_x == 0)
-		rc.delta_dist_x = 1e30f;
+		rc.delta_dist_x = pow(10, 30);
 	else
 		rc.delta_dist_x = fabs(1 / rc.ray_dir_x);
 	if (rc.ray_dir_y == 0)
-		rc.delta_dist_y = 1e30f;
+		rc.delta_dist_y = pow(10, 30);
 	else
 		rc.delta_dist_y = fabs(1 / rc.ray_dir_y);
 	calc_ray_dir(&rc, game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_put.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:22:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 15:03:24 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 08:16:40 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_line	create_line(float x1, float y1, float x2, float y2)
 	return (line);
 }
 
-t_line	protect_co(t_game *game, t_line line)
+t_line	protect_line(t_game *game, t_line line)
 {
 	if (line.x1 < 0)
 		line.x1 = 0;
@@ -44,19 +44,7 @@ t_line	protect_co(t_game *game, t_line line)
 	return (line);
 }
 
-void	my_put_line_w(t_game *game, t_line line, int color, int weight)
-{
-	int	x;
-
-	x = line.x1 - weight / 2;
-	while (x < line.x1 + weight / 2)
-	{
-		my_put_line(game, create_line(x, line.y1, x, line.y2), color);
-		x++;
-	}
-}
-
-void	my_put_line(t_game *game, t_line line, int color)
+void	my_put_line(t_game *game, t_img_data img, t_line line, int color)
 {
 	float	delta_x;
 	float	delta_y;
@@ -64,7 +52,7 @@ void	my_put_line(t_game *game, t_line line, int color)
 	float	pixel_y;
 	int		pixels;
 
-	line = protect_co(game, line);
+	line = protect_line(game, line);
 	delta_x = line.x2 - line.x1;
 	delta_y = line.y2 - line.y1;
 	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
@@ -74,7 +62,7 @@ void	my_put_line(t_game *game, t_line line, int color)
 	pixel_y = line.y1;
 	while (pixels)
 	{
-		my_mlx_pixel_put(&game->buffer, pixel_x, pixel_y, color);
+		my_mlx_pixel_put(&img, pixel_x, pixel_y, color);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		pixels--;

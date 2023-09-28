@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/27 16:55:17 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/28 10:06:32 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ typedef struct s_line
 	double		x2;
 	double		y2;
 }				t_line;
+
+typedef struct s_triangle
+{
+	double		x_top;
+	double		y_top;
+	double		x_base1;
+	double		y_base1;
+	double		x_base2;
+	double		y_base2;
+}				t_triangle;
 
 typedef struct s_player
 {
@@ -133,15 +143,13 @@ void			init_game(t_game *game);
 void			init_map(t_map *map);
 
 // display utils
+int				my_mlx_get_color(t_img_data img, int x, int y);
 void			my_mlx_pixel_put(t_img_data *buffer, int x, int y, int c);
 t_line			create_line(float x1, float y1, float x2, float y2);
-void			my_put_line(t_game *game, t_line line, int c);
-void			my_put_line_w(t_game *game, t_line line, int c, int w);
+void			my_put_line(t_game *game, t_img_data img, t_line line, int color);
 
 // display
-void			draw_obs(t_game *game);
-void			draw_player(t_game *game);
-void			draw_grid(t_game *game);
+void			print_minimap(t_game *game, int x, int y);
 void			raycast(t_game *game);
 
 // key input
@@ -153,8 +161,10 @@ int				loop(t_game *game);
 t_bool			parse_cubfile(char *file, t_map *map);
 
 // helpers
+double			calculate_player_direction(t_player *player);
 void			error_and_exit(char *str);
 void			perror_and_exit(char *prefix);
+
 // clear
 void			destroy_map(t_map *map);
 #endif
