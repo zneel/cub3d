@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:49:03 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 19:31:07 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 08:12:24 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_cub3d(t_game *game)
 {
 	init_game(game);
+	init_img(game);
 	init_player(game);
 }
 

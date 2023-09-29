@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:22:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 08:16:40 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 10:12:16 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	my_put_line(t_game *game, t_img_data img, t_line line, int color)
 	pixel_y = line.y1;
 	while (pixels)
 	{
-		my_mlx_pixel_put(&img, pixel_x, pixel_y, color);
+		my_mlx_pixel_put(&img, pixel_x, pixel_y, color + pixels);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		pixels--;

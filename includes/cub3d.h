@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 19:36:35 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 10:54:19 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define X_SCREEN 1280
 # define Y_SCREEN 720
+# define TEXT_WIDTH 64
+# define TEXT_HEIGHT 64
 # define SIZE_CASE 32    // ?
 # define SIZE_PLAYER 4.0 // ?
 # define RENDER_DIST 32  // ?
@@ -72,6 +74,8 @@ typedef struct s_img_data
 	int			bit_per_pixel;
 	int			line_length;
 	int			endian;
+	int			width;
+	int			height;
 }				t_img_data;
 
 typedef struct s_line
@@ -140,6 +144,15 @@ typedef struct s_map_data
 	t_map_value	dir;
 }				t_map_data;
 
+
+typedef struct s_texture
+{
+	t_img_data	no;
+	t_img_data	so;
+	t_img_data	we;
+	t_img_data	ea;
+}				t_texture;
+
 typedef struct s_map
 {
 	t_map_value	**map;
@@ -156,6 +169,7 @@ typedef struct s_game
 	int			y_win;
 	t_img_data	background;
 	t_img_data	buffer;
+	t_texture	tex;
 	t_map		map;
 	t_player	*player;
 }				t_game;
@@ -164,6 +178,7 @@ typedef struct s_game
 void			init_player(t_game *game);
 void			init_game(t_game *game);
 void			init_map(t_map *map);
+void			init_img(t_game *game);
 
 // display utils
 int				my_mlx_get_color(t_img_data img, int x, int y);
@@ -176,6 +191,7 @@ void			my_put_line(t_game *game, t_img_data img, t_line line,
 void			print_minimap(t_game *game, int x, int y);
 void			raycast(t_game *game);
 void			print_background(t_game *game);
+void			print_texture(t_game *game, t_raycast casted, int x, double perp);
 
 // move
 double			degree_to_radians(double degree);
