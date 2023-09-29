@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 19:40:23 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:35:34 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@
 
 void	draw_ray(t_raycast casted, t_game *game, int x)
 {
-	int		color;
 	double	perp_wall_dist;
 
-	color = RED;
 	if (casted.side == 0)
 		perp_wall_dist = (casted.side_dist_x - casted.delta_dist_x);
 	else
@@ -36,10 +34,7 @@ void	draw_ray(t_raycast casted, t_game *game, int x)
 	casted.draw_end = casted.line_height / 2 + game->y_win / 2;
 	if (casted.draw_end >= game->y_win)
 		casted.draw_end = game->y_win - 1;
-	if (casted.side == 1)
-		color = (color >> 1) & 8355711;
-	my_put_line(game, game->buffer, create_line(x, casted.draw_start, x,
-			casted.draw_end), color);
+	print_texture(game, casted, x, perp_wall_dist);
 }
 
 void	calc_hit(t_raycast *cast, t_game *game)

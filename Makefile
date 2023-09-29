@@ -4,6 +4,7 @@ CFLAGS	:= -Wall -Wextra -Werror -I./includes -MMD
 SRCS	:= sources/main.c \
 		sources/helpers.c \
 		sources/init/init.c \
+		sources/init/init_image.c \
 		sources/parsing/parsing.c \
 		sources/parsing/file.c \
 		sources/parsing/scene.c \
@@ -31,6 +32,7 @@ SRCS	:= sources/main.c \
 		sources/mlx_input/check_input.c \
 		sources/mlx_input/rotate.c \
 		sources/mlx_input/movement.c \
+		sources/raycasting/print_texture.c \
 		sources/raycasting/raycasting.c
 
 OBJS := $(SRCS:.c=.o)
@@ -83,4 +85,7 @@ fclean : clean
 	@echo "Terminé!"
 
 re : fclean all
+
+-include $(DEPS)
+
 .PHONY : all clean fclean re

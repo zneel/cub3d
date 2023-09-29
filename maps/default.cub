@@ -1,9 +1,9 @@
-NO ./textures/wood.xpm
-SO ./textures/wood.xpm
-WE ./textures/wood.xpm
+NO ./textures/bluestone.xpm
+SO ./textures/colorstone.xpm
+WE ./textures/eagle.xpm
 EA ./textures/wood.xpm
-F 220,100,0
-C 225,30,0
+F 0,0,0
+C 50, 105, 168
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
