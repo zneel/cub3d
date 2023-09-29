@@ -6,16 +6,11 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 07:24:35 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:30:46 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:38:08 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-double	calculate_plan_direction(t_player *player)
-{
-	return (atan2(player->plane_y , player->plane_y));
-}
 
 t_img_data	get_good_text(t_game *game, t_raycast cast)
 {
@@ -40,15 +35,15 @@ void	draw_text(t_game *game, t_raycast cast, int tex_x, int x)
 
 	step = 1.0 * TEXT_HEIGHT / cast.line_height;
 	tex_pos = (cast.draw_start - game->y_win / 2 + cast.line_height / 2) * step;
-	y = cast.draw_start -1;
+	y = cast.draw_start - 1;
 	while (++y < cast.draw_end)
 	{
 		tex_y = (int)tex_pos & (TEXT_HEIGHT - 1);
 		tex_pos += step;
 		color = my_mlx_get_color(get_good_text(game, cast), tex_x, tex_y);
-		// if (cast.side == 1)
-		// 	color = (color >> 1) & 8355711;
-		my_mlx_pixel_put(&game->buffer, x, y, color);	
+		if (cast.side == 1)
+			color = (color >> 1) & 8355711;
+		my_mlx_pixel_put(&game->buffer, x, y, color);
 	}
 }
 

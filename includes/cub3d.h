@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 10:54:19 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:33:20 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ typedef struct s_map_data
 	t_map_value	dir;
 }				t_map_data;
 
-
 typedef struct s_texture
 {
 	t_img_data	no;
@@ -191,7 +190,8 @@ void			my_put_line(t_game *game, t_img_data img, t_line line,
 void			print_minimap(t_game *game, int x, int y);
 void			raycast(t_game *game);
 void			print_background(t_game *game);
-void			print_texture(t_game *game, t_raycast casted, int x, double perp);
+void			print_texture(t_game *game, t_raycast casted, int x,
+					double perp);
 
 // move
 double			degree_to_radians(double degree);

@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 19:40:02 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:38:31 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_player(t_game *game)
 	if (!game->player)
 	{
 		close_game(game);
-		exit (1);
+		exit(1);
 	}
 	game->player->pos_x = game->map.data.spawn.x;
 	game->player->pos_y = game->map.data.spawn.y;
@@ -81,10 +81,10 @@ void	init_background(t_game *game)
 		while (++x < game->x_win)
 		{
 			if (y < game->y_win / 2)
-				my_mlx_pixel_put(&game->background, x, y, game->map.data.floor);
-			else
 				my_mlx_pixel_put(&game->background, x, y,
 					game->map.data.ceiling);
+			else
+				my_mlx_pixel_put(&game->background, x, y, game->map.data.floor);
 		}
 	}
 }
