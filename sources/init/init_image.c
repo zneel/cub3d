@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 08:05:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:34:10 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:25:31 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,49 @@ void	init_img(t_game *game)
 	game->tex.ea.addr = mlx_get_data_addr(game->tex.ea.img,
 			&game->tex.ea.bit_per_pixel, &game->tex.ea.line_length,
 			&game->tex.ea.endian);
+}
+
+void	init_background(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < game->y_win)
+	{
+		x = -1;
+		while (++x < game->x_win)
+		{
+			if (y < game->y_win / 2)
+				put_pixel(&game->background, x, y, game->map.data.ceiling);
+			else
+				put_pixel(&game->background, x, y, game->map.data.floor);
+		}
+	}
+}
+
+void	init_pgrm_img(t_game *game)
+{
+	game->minimap = malloc(sizeof(t_img_data));
+	game->minimap->img = mlx_new_image(game->mlx, game->map.x_max * SIZE_CASE,
+			game->map.y_max * SIZE_CASE);
+	game->minimap->width = game->map.x_max * SIZE_CASE;
+	game->minimap->height = game->map.y_max * SIZE_CASE;
+	game->minimap->addr = mlx_get_data_addr(game->minimap->img, &game->minimap->bit_per_pixel,
+			&game->minimap->line_length, &game->minimap->endian);
+	game->win = mlx_new_window(game->mlx, game->x_win, game->y_win, "cub3D");
+	game->background.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
+	game->background.width = game->x_win;
+	game->background.height = game->y_win;
+	game->background.addr = mlx_get_data_addr(game->background.img,
+			&game->background.bit_per_pixel, &game->background.line_length,
+			&game->background.endian);
+	init_background(game);
+	game->buffer = malloc(sizeof(t_img_data));
+	game->buffer->img = mlx_new_image(game->mlx, game->x_win, game->y_win);
+	game->buffer->width = game->x_win;
+	game->buffer->height = game->y_win;
+	game->buffer->addr = mlx_get_data_addr(game->buffer->img,
+			&game->buffer->bit_per_pixel, &game->buffer->line_length,
+			&game->buffer->endian);
 }

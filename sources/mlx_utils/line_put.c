@@ -6,65 +6,49 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:22:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 10:12:16 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:08:54 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_line	create_line(float x1, float y1, float x2, float y2)
+int	sign(int a, int b)
 {
-	t_line	line;
-
-	line.x1 = x1;
-	line.y1 = y1;
-	line.x2 = x2;
-	line.y2 = y2;
-	return (line);
+	if (a < b)
+		return (1);
+	return (-1);
 }
 
-t_line	protect_line(t_game *game, t_line line)
+void	init_bresenham(t_bren *b, t_vec2 start, t_vec2 end)
 {
-	if (line.x1 < 0)
-		line.x1 = 0;
-	if (line.y1 < 0)
-		line.y1 = 0;
-	if (line.x2 < 0)
-		line.x2 = 0;
-	if (line.y2 < 0)
-		line.y2 = 0;
-	if (line.x1 > game->x_win)
-		line.x1 = game->x_win;
-	if (line.y1 > game->y_win)
-		line.y1 = game->y_win;
-	if (line.x2 > game->x_win)
-		line.x2 = game->x_win;
-	if (line.y2 > game->y_win)
-		line.y2 = game->y_win;
-	return (line);
+	b->dx = fabs(end.x - start.x);
+	b->sx = sign(start.x, end.x);
+	b->dy = fabs(end.y - start.y);
+	b->sy = sign(start.y, end.y);
+	if (b->dx > b->dy)
+		b->err = b->dx / 2;
+	else
+		b->err = -b->dy / 2;
 }
 
-void	my_put_line(t_game *game, t_img_data img, t_line line, int color)
+void	draw_line(t_img_data *img, t_vec2 start, t_vec2 end, int color)
 {
-	float	delta_x;
-	float	delta_y;
-	float	pixel_x;
-	float	pixel_y;
-	int		pixels;
+	t_bren	b;
 
-	line = protect_line(game, line);
-	delta_x = line.x2 - line.x1;
-	delta_y = line.y2 - line.y1;
-	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	delta_x /= pixels;
-	delta_y /= pixels;
-	pixel_x = line.x1;
-	pixel_y = line.y1;
-	while (pixels)
+	init_bresenham(&b, start, end);
+	while (start.x != end.x || start.y != end.y)
 	{
-		my_mlx_pixel_put(&img, pixel_x, pixel_y, color + pixels);
-		pixel_x += delta_x;
-		pixel_y += delta_y;
-		pixels--;
+		put_pixel(img, start.x, start.y, color);
+		b.e2 = b.err;
+		if (b.e2 > -b.dx)
+		{
+			b.err -= b.dy;
+			start.x += b.sx;
+		}
+		if (b.e2 < b.dy)
+		{
+			b.err += b.dx;
+			start.y += b.sy;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:38:31 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:25:27 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,6 @@ void	init_map(t_map *map)
 		-1, -1, (t_vec3){-1, -1, (t_vec2){0, 1}}, PN};
 }
 
-void	init_background(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < game->y_win)
-	{
-		x = -1;
-		while (++x < game->x_win)
-		{
-			if (y < game->y_win / 2)
-				my_mlx_pixel_put(&game->background, x, y,
-					game->map.data.ceiling);
-			else
-				my_mlx_pixel_put(&game->background, x, y, game->map.data.floor);
-		}
-	}
-}
-
 void	init_game(t_game *game)
 {
 	game->x_win = X_SCREEN;
@@ -96,14 +76,5 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error_and_exit("mlx_init() failed.");
-	game->win = mlx_new_window(game->mlx, game->x_win, game->y_win, "cub3D");
-	game->background.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
-	game->background.addr = mlx_get_data_addr(game->background.img,
-			&game->background.bit_per_pixel, &game->background.line_length,
-			&game->background.endian);
-	init_background(game);
-	game->buffer.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
-	game->buffer.addr = mlx_get_data_addr(game->buffer.img,
-			&game->buffer.bit_per_pixel, &game->buffer.line_length,
-			&game->buffer.endian);
+	init_pgrm_img(game);
 }

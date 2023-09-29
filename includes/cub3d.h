@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:33:20 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:23:52 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,16 @@ typedef enum e_map_value
 	ERR,
 }				t_map_value;
 
-typedef enum e_co
+typedef struct s_bren
 {
-	CO_X,
-	CO_Y,
-}				t_co;
+	int			dx;
+	int			dy;
+	int			err;
+	int			e2;
+	int			sx;
+	int			sy;
+}				t_bren;
 
-// NO 0,1 SO 0,-1 WE -1,0 EA 1,0;
 typedef struct s_vec2
 {
 	float		x;
@@ -77,14 +80,6 @@ typedef struct s_img_data
 	int			width;
 	int			height;
 }				t_img_data;
-
-typedef struct s_line
-{
-	double		x1;
-	double		y1;
-	double		x2;
-	double		y2;
-}				t_line;
 
 typedef struct s_triangle
 {
@@ -167,7 +162,8 @@ typedef struct s_game
 	int			x_win;
 	int			y_win;
 	t_img_data	background;
-	t_img_data	buffer;
+	t_img_data	*buffer;
+	t_img_data	*minimap;
 	t_texture	tex;
 	t_map		map;
 	t_player	*player;
@@ -178,13 +174,12 @@ void			init_player(t_game *game);
 void			init_game(t_game *game);
 void			init_map(t_map *map);
 void			init_img(t_game *game);
+void			init_pgrm_img(t_game *game);
 
 // display utils
-int				my_mlx_get_color(t_img_data img, int x, int y);
-void			my_mlx_pixel_put(t_img_data *buffer, int x, int y, int c);
-t_line			create_line(float x1, float y1, float x2, float y2);
-void			my_put_line(t_game *game, t_img_data img, t_line line,
-					int color);
+int				my_mlx_get_color(t_img_data *img, int x, int y);
+void			put_pixel(t_img_data *img, int x, int y, int color);
+void			draw_line(t_img_data *img, t_vec2 start, t_vec2 end, int color);
 
 // display
 void			print_minimap(t_game *game, int x, int y);

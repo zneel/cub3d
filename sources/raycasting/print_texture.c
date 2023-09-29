@@ -6,23 +6,23 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 07:24:35 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:38:08 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:31:30 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_img_data	get_good_text(t_game *game, t_raycast cast)
+t_img_data	*get_good_text(t_game *game, t_raycast cast)
 {
 	if (cast.side == 1)
 	{
 		if (cast.map_y < game->player->pos_y)
-			return (game->tex.no);
-		return (game->tex.so);
+			return (&game->tex.no);
+		return (&game->tex.so);
 	}
 	if (cast.map_x > game->player->pos_x)
-		return (game->tex.ea);
-	return (game->tex.we);
+		return (&game->tex.ea);
+	return (&game->tex.we);
 }
 
 void	draw_text(t_game *game, t_raycast cast, int tex_x, int x)
@@ -43,7 +43,7 @@ void	draw_text(t_game *game, t_raycast cast, int tex_x, int x)
 		color = my_mlx_get_color(get_good_text(game, cast), tex_x, tex_y);
 		if (cast.side == 1)
 			color = (color >> 1) & 8355711;
-		my_mlx_pixel_put(&game->buffer, x, y, color);
+		put_pixel(game->buffer, x, y, color);
 	}
 }
 

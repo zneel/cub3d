@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 19:29:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 19:40:55 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:26:46 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	print_background(t_game *game)
 		y = -1;
 		while (++y < game->y_win)
 		{
-			my_mlx_pixel_put(&game->buffer, x, y,
-				my_mlx_get_color(game->background, x, y));
+			put_pixel(game->buffer, x, y,
+				my_mlx_get_color(&game->background, x, y));
 		}
 	}
 }
