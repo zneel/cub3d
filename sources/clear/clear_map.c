@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 21:25:55 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 10:43:55 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:26:47 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	destroy_map_data(t_map_data data)
 {
-	if (data.no)
+	if (data.no_bool)
 		free(data.no);
-	if (data.so)
+	if (data.so_bool)
 		free(data.so);
-	if (data.ea)
+	if (data.ea_bool)
 		free(data.ea);
-	if (data.we)
+	if (data.we_bool)
 		free(data.we);
 	data.ceiling = -1;
 	data.floor = -1;

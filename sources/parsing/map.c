@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:43:00 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 12:08:17 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:25:46 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_map_value	map_content_to_map_value(char content)
 {
 	if (content == '0')
 		return (EMPTY);
-	else if (content == ' ')
+	else if (ft_isspace(content))
 		return (SPACE);
 	else if (content == '1')
 		return (WALL);
@@ -99,16 +99,22 @@ t_bool	fill_map(t_list *list, t_map *map)
 	return (true && spawn_count == 1 && check_closed_map(map));
 }
 
-void	parse_map_list(t_list **list, char *line)
+t_bool	parse_map_list(t_list **list, char *line)
 {
 	t_list	*newnode;
 	char	*copy;
 
 	copy = ft_strtrim(line, "\n");
 	if (!copy)
-		return ;
+		return (free(line), false);
+	if (!*list && *copy == '\0')
+		return (free(line), free(copy), true);
+	if (*list && *copy == '\0')
+		return (free(line), free(copy), false);
 	newnode = ft_lstnew(copy);
 	if (!newnode)
-		return (free(copy));
+		return (free(line), free(copy), false);
 	ft_lstadd_back(list, newnode);
+	free(line);
+	return (true);
 }
