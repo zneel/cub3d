@@ -6,21 +6,26 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 07:24:35 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:08:55 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:30:46 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+double	calculate_plan_direction(t_player *player)
+{
+	return (atan2(player->plane_y , player->plane_y));
+}
+
 t_img_data	get_good_text(t_game *game, t_raycast cast)
 {
-	if (cast.side == 0)
+	if (cast.side == 1)
 	{
-		if ()
+		if (cast.map_y < game->player->pos_y)
 			return (game->tex.no);
 		return (game->tex.so);
 	}
-	if ()
+	if (cast.map_x > game->player->pos_x)
 		return (game->tex.ea);
 	return (game->tex.we);
 }
