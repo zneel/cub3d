@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 08:49:15 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 12:51:46 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:35:33 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	draw_triangle(t_img_data *minimap, t_triangle tri)
 	pixel_y = tri.y_base1;
 	while (pixels)
 	{
-		draw_line(minimap, (t_vec2){(int)pixel_x, (int)pixel_y}, (t_vec2){(int)tri.x_top, (int)tri.y_top}, 0xFF0000);
+		draw_line(minimap, (t_vec2){(int)pixel_x, (int)pixel_y},
+			(t_vec2){(int)tri.x_top, (int)tri.y_top}, 0xFF0000);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		pixels--;

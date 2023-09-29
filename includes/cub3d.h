@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 12:23:52 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:34:38 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_raycast
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
+	t_bool		is_hit;
 }				t_raycast;
 
 typedef struct s_map_data

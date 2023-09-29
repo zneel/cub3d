@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 09:47:22 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:57:09 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:30:27 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_obs(t_game *game, t_img_data *minimap)
 		x = 0;
 		while (x < game->map.x_max)
 		{
-			if (game->map.map[y][x] == WALL || game->map.map[y][x] == SPACE)
+			if (game->map.map[y][x] == WALL)
 				print_obs(minimap, x * SIZE_CASE, y * SIZE_CASE, 0xFFFFFF);
 			else
 				print_obs(minimap, x * SIZE_CASE, y * SIZE_CASE, 0x000000);
