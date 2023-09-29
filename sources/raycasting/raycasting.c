@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:21:25 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 11:35:34 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:35:44 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_ray(t_raycast casted, t_game *game, int x)
 	print_texture(game, casted, x, perp_wall_dist);
 }
 
-void	calc_hit(t_raycast *cast, t_game *game)
+int	calc_hit(t_raycast *cast, t_game *game)
 {
 	int	hit;
 
@@ -56,10 +56,13 @@ void	calc_hit(t_raycast *cast, t_game *game)
 			cast->map_y += cast->step_y;
 			cast->side = 1;
 		}
-		if (game->map.map[cast->map_y][cast->map_x] == WALL
-			|| game->map.map[cast->map_y][cast->map_x] == SPACE)
+		if (cast->map_x < 0 || cast->map_y < 0 || cast->map_x >= game->map.x_max
+			|| cast->map_y >= game->map.y_max)
+			break ;
+		if (game->map.map[cast->map_y][cast->map_x] == WALL)
 			hit = 1;
 	}
+	return (hit);
 }
 
 void	calc_ray_dir(t_raycast *rc, t_game *game)
@@ -106,7 +109,10 @@ t_raycast	cast_ray(t_game *game, int x)
 	else
 		rc.delta_dist_y = fabs(1 / rc.ray_dir_y);
 	calc_ray_dir(&rc, game);
-	calc_hit(&rc, game);
+	if (calc_hit(&rc, game))
+		rc.is_hit = true;
+	else
+		rc.is_hit = false;
 	return (rc);
 }
 
@@ -119,6 +125,7 @@ void	raycast(t_game *game)
 	while (++x < game->x_win)
 	{
 		casted = cast_ray(game, x);
-		draw_ray(casted, game, x);
+		if (casted.is_hit)
+			draw_ray(casted, game, x);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 08:05:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 12:25:31 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:35:21 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void	init_pgrm_img(t_game *game)
 			game->map.y_max * SIZE_CASE);
 	game->minimap->width = game->map.x_max * SIZE_CASE;
 	game->minimap->height = game->map.y_max * SIZE_CASE;
-	game->minimap->addr = mlx_get_data_addr(game->minimap->img, &game->minimap->bit_per_pixel,
-			&game->minimap->line_length, &game->minimap->endian);
+	game->minimap->addr = mlx_get_data_addr(game->minimap->img,
+			&game->minimap->bit_per_pixel, &game->minimap->line_length,
+			&game->minimap->endian);
 	game->win = mlx_new_window(game->mlx, game->x_win, game->y_win, "cub3D");
 	game->background.img = mlx_new_image(game->mlx, game->x_win, game->y_win);
 	game->background.width = game->x_win;

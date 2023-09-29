@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 12:23:52 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:51:55 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define SIZE_CASE 32    // ?
 # define SIZE_PLAYER 4.0 // ?
 # define RENDER_DIST 32  // ?
-# define ROT_SPEED 2
-# define MOVE_SPEED 2
+# define ROT_SPEED 4
+# define MOVE_SPEED 3
 
 typedef bool	t_bool;
 
@@ -121,6 +121,7 @@ typedef struct s_raycast
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
+	t_bool		is_hit;
 }				t_raycast;
 
 typedef struct s_map_data
