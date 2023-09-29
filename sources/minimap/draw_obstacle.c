@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 09:47:22 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 09:51:52 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:57:09 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_obs(t_img_data *minimap, int x_start, int y_start,
 		y = y_start;
 		while (y <= y_start + SIZE_CASE)
 		{
-			my_mlx_pixel_put(minimap, x, y, color);
+			put_pixel(minimap, x, y, color);
 			y++;
 		}
 		x++;

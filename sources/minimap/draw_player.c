@@ -6,13 +6,13 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 08:49:15 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 09:43:16 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 12:51:46 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap.h"
 
-void	draw_triangle(t_game *game, t_img_data *minimap, t_triangle tri)
+void	draw_triangle(t_img_data *minimap, t_triangle tri)
 {
 	double	delta_x;
 	double	delta_y;
@@ -29,8 +29,7 @@ void	draw_triangle(t_game *game, t_img_data *minimap, t_triangle tri)
 	pixel_y = tri.y_base1;
 	while (pixels)
 	{
-		my_put_line(game, *minimap, create_line(pixel_x, pixel_y, tri.x_top,
-				tri.y_top), 0xFF0000);
+		draw_line(minimap, (t_vec2){(int)pixel_x, (int)pixel_y}, (t_vec2){(int)tri.x_top, (int)tri.y_top}, 0xFF0000);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		pixels--;
@@ -43,8 +42,8 @@ void	draw_player(t_game *game, t_img_data *minimap)
 	double		facing_direction;
 
 	facing_direction = calculate_player_direction(game->player);
-	tri.x_top = game->player->x + game->player->dir_x * 5;
-	tri.y_top = game->player->y + game->player->dir_y * 5;
+	tri.x_top = game->player->x + game->player->dir_x * 10;
+	tri.y_top = game->player->y + game->player->dir_y * 10;
 	tri.x_base1 = game->player->x - game->player->dir_x * 5
 		+ cos(facing_direction + M_PI_2) * SIZE_PLAYER;
 	tri.y_base1 = game->player->y - game->player->dir_y * 5
@@ -53,5 +52,5 @@ void	draw_player(t_game *game, t_img_data *minimap)
 		- cos(facing_direction + M_PI_2) * SIZE_PLAYER;
 	tri.y_base2 = game->player->y - game->player->dir_y * 5
 		- sin(facing_direction + M_PI_2) * SIZE_PLAYER;
-	draw_triangle(game, minimap, tri);
+	draw_triangle(minimap, tri);
 }

@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 09:47:57 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 09:48:17 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:57:02 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_grid(t_game *game, t_img_data *minimap)
 		y = 0;
 		while (y < game->map.y_max * SIZE_CASE)
 		{
-			my_mlx_pixel_put(minimap, x, y, 0x606060);
+			put_pixel(minimap, x, y, 0x606060);
 			y++;
 		}
 		x += SIZE_CASE;
@@ -34,7 +34,7 @@ void	draw_grid(t_game *game, t_img_data *minimap)
 		x = 0;
 		while (x < game->map.x_max * SIZE_CASE)
 		{
-			my_mlx_pixel_put(minimap, x, y, 0x606060);
+			put_pixel(minimap, x, y, 0x606060);
 			x++;
 		}
 		y += SIZE_CASE;
