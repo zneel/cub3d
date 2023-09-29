@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/28 14:08:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:12:06 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@
 #include "lists.h"
 #include "parsing.h"
 #include <fcntl.h>
+
+static t_bool	has_all_data(t_map *map, char *line)
+{
+	if (map->data.ceiling == -1 || map->data.floor == -1 || map->data.no == NULL
+		|| map->data.ea == NULL || map->data.so == NULL || map->data.we == NULL
+		|| !map->data.no_bool || !map->data.ea_bool || !map->data.so_bool
+		|| !map->data.we_bool)
+	{
+		free(line);
+		return (false);
+	}
+	return (true);
+}
 
 t_bool	lst_to_map(t_list *list, t_map *map)
 {
@@ -38,7 +51,10 @@ t_bool	parse_infos(char *line, t_map *map)
 {
 	if (parse_textures(line, map) || parse_ceiling_color(line, map)
 		|| parse_floor_color(line, map))
+	{
+		free(line);
 		return (true);
+	}
 	return (false);
 }
 
@@ -55,16 +71,15 @@ t_bool	parse_data(int fd, t_map *map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (parse_infos(line, map))
-		{
-			free(line);
+		if (parse_infos(line, map) || !has_all_data(map, line))
 			continue ;
+		if (!parse_map_list(&list, line))
+		{
+			ft_dprintf(2, "Error\nInvalid map.\n");
+			return (ft_lstclear(&list, free), close(fd), false);
 		}
-		else
-			parse_map_list(&list, line);
-		free(line);
 	}
-	if (!lst_to_map(list, map))
+	if (ok && !lst_to_map(list, map))
 		ok = false;
 	return (ft_lstclear(&list, free), close(fd), ok);
 }
@@ -80,10 +95,7 @@ t_bool	parse_cubfile(char *file, t_map *map)
 	if (!parse_data(fd, map))
 		return (false);
 	if (!is_scene_valid(map))
-	{
-		destroy_map(map);
-		return (false);
-	}
+		return (destroy_map(map), false);
 	parse_player_start_pos(map);
 	debug_parsing(map);
 	return (true);

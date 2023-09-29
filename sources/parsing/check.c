@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:48:35 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 12:03:36 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 13:20:52 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_bool	is_data_valid(t_map *map)
 		|| !map->data.no_bool || !map->data.ea_bool || !map->data.so_bool
 		|| !map->data.we_bool)
 	{
-		ft_dprintf(2, "Error\nInvalid scene data.\n");
 		return (false);
 	}
 	return (true);
@@ -96,7 +95,10 @@ t_bool	is_scene_valid(t_map *map)
 		}
 		y++;
 	}
-	if (!is_data_valid(map) || !check_paths(map))
-		ok = false;
-	return (ok);
+	if (!is_data_valid(map))
+	{
+		ft_dprintf(2, "Error\nInvalid scene data.\n");
+		return (false);
+	}
+	return (ok && check_paths(map));
 }
