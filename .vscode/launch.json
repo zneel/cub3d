@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/cub3D",
             "args": [
-                "maps/default.cub"
+                "wrong.cub"
             ],
             "cwd": "${workspaceFolder}"
         }

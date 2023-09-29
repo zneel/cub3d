@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:31:40 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 19:31:20 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 14:54:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	free_split(char **split)
 
 void	error_and_exit(char *str)
 {
-	ft_dprintf(2, "Error\n%s\n", str);
+	ft_dprintf(1, "Error\n%s\n", str);
 	exit(1);
 }
 
 void	perror_and_exit(char *prefix)
 {
-	ft_dprintf(2, "Error\n");
+	ft_dprintf(1, "Error\n");
 	perror(prefix);
 	exit(1);
 }

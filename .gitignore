@@ -3,3 +3,4 @@ cub3D
 *.d
 .cache
 compile_commands.json
+.nfs*

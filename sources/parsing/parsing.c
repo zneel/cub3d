@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 14:30:39 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:54:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ t_bool	lst_to_map(t_list *list, t_map *map)
 	}
 	if (!fill_map(list, map))
 	{
-		ft_dprintf(2, "Error\nInvalid map.\n");
-		destroy_map(map);
+		ft_dprintf(1, "Error\nInvalid map.\n");
 		return (false);
 	}
 	return (true);
@@ -74,7 +73,7 @@ t_bool	parse_data(int fd, t_map *map)
 		if (!parse_map_list(&list, line))
 		{
 			get_next_line(-1);
-			ft_dprintf(2, "Error\nInvalid map.\n");
+			ft_dprintf(1, "Error\nInvalid map.\n");
 			return (ft_lstclear(&list, free), close(fd), false);
 		}
 	}

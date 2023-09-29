@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:48:35 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/29 13:20:52 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:54:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool	check_texture_extension(char *file)
 		return (false);
 	if (ft_strncmp(file + len - 4, ".xpm", 4))
 	{
-		ft_dprintf(2, "Error\nInvalid texture extension: %s.\n", file);
+		ft_dprintf(1, "Error\nInvalid texture extension: %s.\n", file);
 		return (false);
 	}
 	return (true);
@@ -42,7 +42,7 @@ t_bool	check_texture_file(char *file)
 	fd = open(file, O_RDWR, 0644);
 	if (fd == -1)
 	{
-		ft_dprintf(2, "Error\nCannot open texture: %s.\n", file);
+		ft_dprintf(1, "Error\nCannot open texture: %s.\n", file);
 		return (false);
 	}
 	close(fd);
@@ -97,7 +97,7 @@ t_bool	is_scene_valid(t_map *map)
 	}
 	if (!is_data_valid(map))
 	{
-		ft_dprintf(2, "Error\nInvalid scene data.\n");
+		ft_dprintf(1, "Error\nInvalid scene data.\n");
 		return (false);
 	}
 	return (ok && check_paths(map));
