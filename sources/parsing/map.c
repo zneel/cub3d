@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:43:00 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/29 14:07:02 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:25:46 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_map_value	map_content_to_map_value(char content)
 {
 	if (content == '0')
 		return (EMPTY);
-	else if (content == ' ')
+	else if (ft_isspace(content))
 		return (SPACE);
 	else if (content == '1')
 		return (WALL);

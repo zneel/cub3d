@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 14:12:06 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/09/29 14:30:39 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ t_bool	parse_data(int fd, t_map *map)
 {
 	char	*line;
 	t_list	*list;
-	t_bool	ok;
 
 	list = NULL;
-	ok = true;
 	while (true)
 	{
 		line = get_next_line(fd);
@@ -75,13 +73,14 @@ t_bool	parse_data(int fd, t_map *map)
 			continue ;
 		if (!parse_map_list(&list, line))
 		{
+			get_next_line(-1);
 			ft_dprintf(2, "Error\nInvalid map.\n");
 			return (ft_lstclear(&list, free), close(fd), false);
 		}
 	}
-	if (ok && !lst_to_map(list, map))
-		ok = false;
-	return (ft_lstclear(&list, free), close(fd), ok);
+	if (!lst_to_map(list, map))
+		return (ft_lstclear(&list, free), close(fd), false);
+	return (ft_lstclear(&list, free), close(fd), true);
 }
 
 t_bool	parse_cubfile(char *file, t_map *map)
@@ -93,7 +92,7 @@ t_bool	parse_cubfile(char *file, t_map *map)
 	if (fd == -1)
 		perror_and_exit(file);
 	if (!parse_data(fd, map))
-		return (false);
+		return (destroy_map(map), false);
 	if (!is_scene_valid(map))
 		return (destroy_map(map), false);
 	parse_player_start_pos(map);

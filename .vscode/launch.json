@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/cub3D",
             "args": [
-                "maps/testmaps/NONVALID/non_valid_hole.cub"
+                "maps/default.cub"
             ],
             "cwd": "${workspaceFolder}"
         }
