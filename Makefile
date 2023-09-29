@@ -19,10 +19,6 @@ SRCS	:= sources/main.c \
 		sources/clear/clear_map.c \
 		sources/clear/free_exit.c \
 		sources/clear/destroy_exit.c \
-		sources/minimap/print_minimap.c \
-		sources/minimap/draw_player.c \
-		sources/minimap/draw_grid.c \
-		sources/minimap/draw_obstacle.c \
 		sources/display/print_background.c \
 		sources/mlx_utils/get_color.c \
 		sources/mlx_utils/pixel_put.c \
@@ -35,8 +31,44 @@ SRCS	:= sources/main.c \
 		sources/raycasting/print_texture.c \
 		sources/raycasting/raycasting.c
 
+SRCS_BNS := sources_bonus/main.c \
+		sources_bonus/helpers.c \
+		sources_bonus/init/init.c \
+		sources_bonus/init/init_image.c \
+		sources_bonus/parsing/parsing.c \
+		sources_bonus/parsing/file.c \
+		sources_bonus/parsing/scene.c \
+		sources_bonus/parsing/textures.c \
+		sources_bonus/parsing/colors.c \
+		sources_bonus/parsing/map.c \
+		sources_bonus/parsing/check.c \
+		sources_bonus/parsing/debug.c \
+		sources_bonus/parsing/utils.c \
+		sources_bonus/parsing/map_check.c \
+		sources_bonus/parsing/player.c \
+		sources_bonus/clear/clear_map.c \
+		sources_bonus/clear/free_exit.c \
+		sources_bonus/clear/destroy_exit.c \
+		sources_bonus/minimap/print_minimap.c \
+		sources_bonus/minimap/draw_player.c \
+		sources_bonus/minimap/draw_grid.c \
+		sources_bonus/minimap/draw_obstacle.c \
+		sources_bonus/display/print_background.c \
+		sources_bonus/mlx_utils/get_color.c \
+		sources_bonus/mlx_utils/pixel_put.c \
+		sources_bonus/mlx_utils/line_put.c \
+		sources_bonus/mlx_input/mlx_ft.c \
+		sources_bonus/mlx_input/move_utils.c \
+		sources_bonus/mlx_input/check_input.c \
+		sources_bonus/mlx_input/rotate.c \
+		sources_bonus/mlx_input/movement.c \
+		sources_bonus/raycasting/print_texture.c \
+		sources_bonus/raycasting/raycasting.c
+
 OBJS := $(SRCS:.c=.o)
+OBJS_BNS := $(SRCS_BNS:.c=.o)
 DEPS := $(SRCS:.c=.d)
+DEPS_BNS := $(SRCS_BNS:.c=.d)
 
 INCLUDES := -Iincludes -Ilibft/includes -Imlx_linux
 LIBS := -Llibft -lft -Lmlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
@@ -62,7 +94,9 @@ $(NAME): $(LIBRARY) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBRARY) $(LIBS)
 	@echo "Terminé!"
 
-bonus: all
+bonus: $(LIBRARY) $(OBJS_BNS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME)_bonus $(OBJS_BNS) $(LIBRARY) $(LIBS)
+	@echo "Terminé!"
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -74,17 +108,21 @@ $(LIBRARY):
 clean :
 	rm -f $(OBJS)
 	rm -f $(DEPS)
+	rm -f $(OBJS_BNS)
+	rm -f $(DEPS_BNS)
 	make -sC mlx_linux clean
 	make -sC libft clean
 	@echo "Terminé!"
 
 fclean : clean
 	rm -f $(NAME)
+	rm -f $(NAME)_bonus
 	make -sC libft fclean
 	@echo "Terminé!"
 
 re : fclean all
 
 -include $(DEPS)
+-include $(DEPS_BNS)
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
