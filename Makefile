@@ -80,7 +80,6 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
-	make -sC mlx_linux clean
 	make -sC libft fclean
 	@echo "Terminé!"
 
