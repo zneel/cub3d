@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 23:15:00 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/30 12:47:47 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void			raycast(t_game *game);
 void			print_background(t_game *game);
 void			print_texture(t_game *game, t_raycast casted, int x,
 					double perp);
+void			print_minimap(t_game *game, int to_x, int to_y);
 
 // move
 double			degree_to_radians(double degree);
