@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 12:25:27 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/30 13:35:57 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	init_player(t_game *game)
 	}
 	game->player->pos_x = game->map.data.spawn.x;
 	game->player->pos_y = game->map.data.spawn.y;
-	game->player->x = SIZE_CASE * game->player->pos_x;
-	game->player->y = SIZE_CASE * game->player->pos_y;
+	game->player->x = SIZE_CASE * game->player->pos_x + SIZE_CASE / 2;
+	game->player->y = SIZE_CASE * game->player->pos_y + SIZE_CASE / 2;
 	game->player->dir_x = game->map.data.spawn.dir.x;
 	game->player->dir_y = game->map.data.spawn.dir.y;
 	game->player->plane_x = 0;
