@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:29:27 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 23:19:34 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/09/29 13:23:22 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	loop(t_game *game)
 	do_move(game);
 	print_background(game);
 	raycast(game);
+	print_minimap(game, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->buffer->img, 0, 0);
 	return (0);
 }
