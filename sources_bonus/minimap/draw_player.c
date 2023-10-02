@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 08:49:15 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 13:35:33 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 20:01:42 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	draw_player(t_game *game, t_img_data *minimap)
 	double		facing_direction;
 
 	facing_direction = calculate_player_direction(game->player);
-	tri.x_top = game->player->x + game->player->dir_x * 10;
-	tri.y_top = game->player->y + game->player->dir_y * 10;
-	tri.x_base1 = game->player->x - game->player->dir_x * 5
+	tri.x_top = SIZE_MAP + game->player->dir_x * 10;
+	tri.y_top = SIZE_MAP + game->player->dir_y * 10;
+	tri.x_base1 = SIZE_MAP - game->player->dir_x * 5
 		+ cos(facing_direction + M_PI_2) * SIZE_PLAYER;
-	tri.y_base1 = game->player->y - game->player->dir_y * 5
+	tri.y_base1 = SIZE_MAP - game->player->dir_y * 5
 		+ sin(facing_direction + M_PI_2) * SIZE_PLAYER;
-	tri.x_base2 = game->player->x - game->player->dir_x * 5
+	tri.x_base2 = SIZE_MAP - game->player->dir_x * 5
 		- cos(facing_direction + M_PI_2) * SIZE_PLAYER;
-	tri.y_base2 = game->player->y - game->player->dir_y * 5
+	tri.y_base2 = SIZE_MAP - game->player->dir_y * 5
 		- sin(facing_direction + M_PI_2) * SIZE_PLAYER;
 	draw_triangle(minimap, tri);
 }

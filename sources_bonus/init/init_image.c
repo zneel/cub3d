@@ -6,11 +6,12 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 08:05:16 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 13:35:21 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 16:14:07 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "minimap.h"
 
 void	init_img(t_game *game)
 {
@@ -58,10 +59,9 @@ void	init_background(t_game *game)
 void	init_pgrm_img(t_game *game)
 {
 	game->minimap = malloc(sizeof(t_img_data));
-	game->minimap->img = mlx_new_image(game->mlx, game->map.x_max * SIZE_CASE,
-			game->map.y_max * SIZE_CASE);
-	game->minimap->width = game->map.x_max * SIZE_CASE;
-	game->minimap->height = game->map.y_max * SIZE_CASE;
+	game->minimap->img = mlx_new_image(game->mlx, SIZE_MAP * 2, SIZE_MAP * 2);
+	game->minimap->width = SIZE_MAP * 2;
+	game->minimap->height = SIZE_MAP * 2;
 	game->minimap->addr = mlx_get_data_addr(game->minimap->img,
 			&game->minimap->bit_per_pixel, &game->minimap->line_length,
 			&game->minimap->endian);

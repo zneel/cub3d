@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 15:13:46 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/10/03 11:00:40 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define Y_SCREEN 720
 # define TEXT_WIDTH 64
 # define TEXT_HEIGHT 64
-# define SIZE_CASE 32    // ?
+# define SIZE_CASE 25    // ?
 # define SIZE_PLAYER 4.0 // ?
 # define RENDER_DIST 32  // ?
 # define ROT_SPEED 4
@@ -194,6 +194,8 @@ void			print_minimap(t_game *game, int to_x, int to_y);
 // move
 double			degree_to_radians(double degree);
 double			calculate_player_direction(t_player *player);
+void			hitbox(t_game *game, double old_x, double old_y,
+					double player_dir);
 void			key_right(t_game *game);
 void			key_left(t_game *game);
 void			key_w(t_game *game);

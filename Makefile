@@ -61,6 +61,7 @@ SRCS_BNS := sources_bonus/main.c \
 		sources_bonus/mlx_input/mlx_ft.c \
 		sources_bonus/mlx_input/move_utils.c \
 		sources_bonus/mlx_input/check_input.c \
+		sources_bonus/mlx_input/hitbox.c \
 		sources_bonus/mlx_input/rotate.c \
 		sources_bonus/mlx_input/movement.c \
 		sources_bonus/raycasting/print_texture.c \
