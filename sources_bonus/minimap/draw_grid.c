@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 09:47:57 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 21:18:24 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 21:51:25 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	hor(t_game *game, t_img_data *minimap)
 		x_start = (game->player->x - SIZE_MAP);
 		while (++x < (game->player->x + SIZE_MAP))
 		{
-			if (y >= 0 && x >= 0 && x < game->map.x_max * SIZE_CASE
+			if (y > 0 && x > 0 && x < game->map.x_max * SIZE_CASE
 				&& y < game->map.y_max)
 				put_pixel(minimap, x - x_start, y * SIZE_CASE - y_start,
 					0x808080);
@@ -47,16 +47,18 @@ void	vert(t_game *game, t_img_data *minimap)
 	x_start = (game->player->x - SIZE_MAP);
 	while (++x < (game->player->x + SIZE_MAP) / SIZE_CASE)
 	{
+		printf("oui\n");
 		y = (game->player->y - SIZE_MAP - SIZE_CASE);
 		y_start = (game->player->y - SIZE_MAP);
 		while (++y < (game->player->y + SIZE_MAP))
 		{
-			if (y >= 0 && x >= 0 && x < game->map.x_max && y < game->map.y_max
+			if (y > 0 && x > 0 && x < game->map.x_max && y < game->map.y_max
 				* SIZE_CASE)
 				put_pixel(minimap, x * SIZE_CASE - x_start, y - y_start,
 					0x808080);
 		}
 	}
+	printf("\n");
 }
 
 void	draw_grid(t_game *game, t_img_data *minimap)
