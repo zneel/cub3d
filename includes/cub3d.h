@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:53:47 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 10:14:19 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:09:17 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,13 @@ typedef struct s_raycast
 typedef struct s_map_data
 {
 	char		*no;
-	t_bool		no_bool;
+	int			no_bool;
 	char		*so;
-	t_bool		so_bool;
+	int			so_bool;
 	char		*we;
-	t_bool		we_bool;
+	int			we_bool;
 	char		*ea;
-	t_bool		ea_bool;
+	int			ea_bool;
 	int			floor;
 	int			ceiling;
 	t_vec3		spawn;
