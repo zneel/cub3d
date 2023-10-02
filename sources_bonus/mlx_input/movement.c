@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:28:48 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/30 12:49:30 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 09:38:37 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	key_s(t_game *game)
 	reset_co(game);
 	game->player->pos_x = game->player->x / SIZE_CASE;
 	game->player->pos_y = game->player->y / SIZE_CASE;
-}
+}	
 
 void	key_d(t_game *game)
 {

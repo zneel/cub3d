@@ -1,4 +1,5 @@
 NAME	:= cub3D
+NAME_BNS := cub3D_bonus
 CC 		:= cc
 CFLAGS	:= -Wall -Wextra -Werror -I./includes -MMD
 SRCS	:= sources/main.c \
@@ -90,12 +91,14 @@ endif
 
 all : $(NAME)
 
+bonus : $(NAME_BNS)
+
 $(NAME): $(LIBRARY) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBRARY) $(LIBS)
 	@echo "Terminé!"
 
-bonus: $(LIBRARY) $(OBJS_BNS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME)_bonus $(OBJS_BNS) $(LIBRARY) $(LIBS)
+$(NAME_BNS): $(LIBRARY) $(OBJS_BNS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME_BNS) $(OBJS_BNS) $(LIBRARY) $(LIBS)
 	@echo "Terminé!"
 
 %.o: %.c

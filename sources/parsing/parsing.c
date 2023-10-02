@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/09/29 14:54:04 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:20:09 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ t_bool	parse_cubfile(char *file, t_map *map)
 	if (!is_scene_valid(map))
 		return (destroy_map(map), false);
 	parse_player_start_pos(map);
-	debug_parsing(map);
 	return (true);
 }
