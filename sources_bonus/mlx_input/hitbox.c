@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 21:19:18 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 21:30:45 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/03 11:17:34 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	protection(t_game *game)
 {
 	if (!((int)(game->player->y / SIZE_CASE) < game->map.y_max
 		&& (int)(game->player->x / SIZE_CASE) < game->map.x_max
-			&& (int)(game->player->y / SIZE_CASE) >= 0 && (int)(game->player->x
-				/ SIZE_CASE) >= 0))
+		&& (int)(game->player->y / SIZE_CASE) >= 0 && (int)(game->player->x
+			/ SIZE_CASE) >= 0))
 		return (1);
 	return (0);
 }
@@ -87,7 +87,7 @@ void	hitbox(t_game *game, double old_x, double old_y, double player_dir)
 				/ SIZE_CASE)] == SPACE
 		|| game->map.map[(int)floor(game->player->y
 				/ SIZE_CASE)][(int)floor(game->player->x
-		/ SIZE_CASE)] == EMPTY))
+			/ SIZE_CASE)] == EMPTY))
 	{
 		bot_side(game, old_x, old_y, player_dir);
 		top_side(game, old_x, old_y, player_dir);
