@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:12:12 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 10:20:09 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:33:12 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ static t_bool	has_all_data(t_map *map, char *line)
 {
 	if (map->data.ceiling == -1 || map->data.floor == -1 || map->data.no == NULL
 		|| map->data.ea == NULL || map->data.so == NULL || map->data.we == NULL
-		|| !map->data.no_bool || !map->data.ea_bool || !map->data.so_bool
-		|| !map->data.we_bool)
+		|| map->data.no_bool > 1 || map->data.ea_bool > 1
+		|| map->data.so_bool > 1 || map->data.we_bool > 1
+		|| map->data.floor_bool > 1 || map->data.ceiling_bool > 1)
 	{
 		free(line);
 		return (false);

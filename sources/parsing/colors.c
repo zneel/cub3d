@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:46:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/09/28 19:37:50 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:18:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_bool	parse_ceiling_color(char *line, t_map *map)
 
 	if (line[0] == 'C')
 	{
+		map->data.ceiling_bool++;
 		colors = ft_split(line + 1, ", \n");
 		if (!colors || !colors[0] || !colors[1] || !colors[2]
 			|| split_len(colors) > 3)
@@ -77,6 +78,7 @@ t_bool	parse_floor_color(char *line, t_map *map)
 
 	if (line[0] == 'F')
 	{
+		map->data.floor_bool++;
 		colors = ft_split(line + 1, ", \n");
 		if (!colors || !colors[0] || !colors[1] || !colors[2]
 			|| split_len(colors) > 3)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:58:28 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 10:16:06 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:33:58 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	init_map(t_map *map)
 	map->x_max = 0;
 	map->y_max = 0;
 	map->map = NULL;
-	map->data = (t_map_data){NULL, false, NULL, false, NULL, false, NULL, false,
-		-1, -1, (t_vec3){-1, -1, (t_vec2){0, 1}}, PN};
+	map->data = (t_map_data){NULL, 0, NULL, 0, NULL, 0, NULL, 0, 0, 0, -1, 0,
+		(t_vec3){-1, -1, (t_vec2){0, 1}}, PN};
 }
 
 void	init_game(t_game *game)
