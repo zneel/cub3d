@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 09:47:57 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/03 09:05:24 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/03 11:15:44 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	hor(t_game *game, t_img_data *minimap)
 		while (++x < (game->player->x + SIZE_MAP))
 		{
 			if (y > 0 && x > 0 && x < game->map.x_max * SIZE_CASE
-				&& y < game->map.y_max && game->map.map[y][x / SIZE_CASE] != SPACE)
+				&& y < game->map.y_max && game->map.map[y][x
+				/ SIZE_CASE] != SPACE)
 				put_pixel(minimap, x - x_start, y * SIZE_CASE - y_start,
 					0x808080);
 		}
