@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 21:25:55 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/10/02 15:19:16 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/10/03 10:55:21 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	destroy_map_data(t_map_data data)
 {
-	if (data.no_bool > 1)
+	if (data.no_bool)
 		free(data.no);
-	if (data.so_bool > 1)
+	if (data.so_bool)
 		free(data.so);
-	if (data.ea_bool > 1)
+	if (data.ea_bool)
 		free(data.ea);
-	if (data.we_bool > 1)
+	if (data.we_bool)
 		free(data.we);
 	data.ceiling = -1;
 	data.floor = -1;

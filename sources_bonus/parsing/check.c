@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:48:35 by ebouvier          #+#    #+#             */
-/*   Updated: 2023/10/02 15:32:09 by ebouvier         ###   ########.fr       */
+/*   Updated: 2023/10/03 10:49:09 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ t_bool	is_data_valid(t_map *map)
 {
 	if (map->data.ceiling == -1 || map->data.floor == -1 || map->data.no == NULL
 		|| map->data.ea == NULL || map->data.so == NULL || map->data.we == NULL
-		|| !map->data.no_bool || !map->data.ea_bool || !map->data.so_bool
-		|| !map->data.we_bool)
+		|| map->data.no_bool > 1 || map->data.ea_bool > 1
+		|| map->data.so_bool > 1 || map->data.we_bool > 1
+		|| map->data.ceiling_bool > 1 || map->data.floor_bool > 1)
 	{
 		return (false);
 	}
