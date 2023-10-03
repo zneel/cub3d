@@ -6,7 +6,7 @@
 /*   By: mhoyer <mhoyer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 09:47:57 by mhoyer            #+#    #+#             */
-/*   Updated: 2023/10/02 21:51:25 by mhoyer           ###   ########.fr       */
+/*   Updated: 2023/10/03 08:47:55 by mhoyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	vert(t_game *game, t_img_data *minimap)
 	x_start = (game->player->x - SIZE_MAP);
 	while (++x < (game->player->x + SIZE_MAP) / SIZE_CASE)
 	{
-		printf("oui\n");
 		y = (game->player->y - SIZE_MAP - SIZE_CASE);
 		y_start = (game->player->y - SIZE_MAP);
 		while (++y < (game->player->y + SIZE_MAP))
